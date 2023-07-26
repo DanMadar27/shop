@@ -9,6 +9,7 @@
   --secondary: 120, 149, 203;
   --tertiary: 0, 0, 0;
   --button-text: 230, 230, 230;
+  --error: 238, 75, 43;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -36,7 +37,7 @@ h2 {
 
 h3 {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 p {
@@ -95,6 +96,7 @@ form {
 label {
   display: block;
   margin-bottom: 5px;
+  font-size: 0.9rem;
 }
 
 input[type="text"],
@@ -103,6 +105,7 @@ input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -127,6 +130,6 @@ input[type="submit"]:disabled {
 }
 
 .error {
-  color: red;
+  color: rgb(var(--error));
   font-weight: 700;
 }
