@@ -4,7 +4,7 @@ import Image from 'next/legacy/image'
 
 import classes from './hero.module.css'
 
-export default function Home() {
+export default function Hero() {
   return (
     <div className={classes.container}>
       <div>
