@@ -3,5 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.3rem;
+
   height: 100%;
+  padding: 2rem;
 }
