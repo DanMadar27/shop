@@ -57,7 +57,12 @@ p {
   text-align: center;
 }
 
-/* Button Styles */
+/* Button and Link Styles */
+a {
+  color: rgb(var(--primary));
+  text-decoration: none;
+}
+
 button {
   font-size: 1rem;
 
@@ -75,6 +80,11 @@ button {
 
 button:hover {
   font-weight: 700;
+}
+
+button > a {
+  color: rgb(var(--button-text));
+  text-decoration: none;
 }
 
 /* Image Styles */

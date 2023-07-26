@@ -4,20 +4,16 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const initialValues = {
-  fullName: '',
   email: '',
-  password: '',
-  confirmPassword: ''
+  password: ''
 };
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required('Please enter your full name.'),
   email: Yup.string().email('Please enter a valid email address.').required('Email is required.'),
-  password: Yup.string().min(6, 'Password must be at least 6 characters long.').required('Password is required.'),
-  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match.').required('Please confirm your password.'),
+  password: Yup.string().required('Password is required.'),
 });
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       console.log(values);
@@ -43,11 +39,6 @@ export default function RegisterForm() {
     >
       {({ isSubmitting }) => (
         <Form>
-          <label htmlFor='fullName'>Full Name:</label>
-          <Field type='text' id='fullName' name='fullName' />
-
-          <ErrorMessage name='fullName' component='div' className='error' />
-
           <label htmlFor='email'>Email Address:</label>
           <Field type='email' id='email' name='email' />
 
@@ -58,12 +49,7 @@ export default function RegisterForm() {
 
           <ErrorMessage name='password' component='div' className='error' />
 
-          <label htmlFor='confirmPassword'>Confirm Password:</label>
-          <Field type='password' id='confirmPassword' name='confirmPassword' />
-
-          <ErrorMessage name='confirmPassword' component='div' className='error' />
-
-          <input type='submit' value='Register' disabled={isSubmitting} />
+          <input type='submit' value='Login' disabled={isSubmitting} />
         </Form>
       )}
     </Formik>
