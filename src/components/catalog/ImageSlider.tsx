@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import React, { useState, useEffect } from 'react';
 
+import styles from './ImageSlider.module.css';
+
 interface Props {
   images: string[]; // Array of image URLs
 }
@@ -20,8 +22,16 @@ const ImageSlider: NextPage<Props> = (props) => {
   }, [images.length]);
 
   return (
-    <div>
-      <img src={images[currentImage]} alt={`Image ${currentImage}`} />
+    <div className={styles.container}>
+      <div className={styles.slider}>
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Image ${index}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import ImageSlider from '../..//components/ImageSlider';
+import ImageSlider from '../../components/catalog/ImageSlider';
 import Products from '../../components/products/Products';
 
 import styles from './home.module.css';
@@ -100,7 +100,6 @@ export default function Home() {
         <h1>Shop</h1>
       </div>
       <div className={styles.catalog}>
-        {/* here is catalog images carousel */}
         <ImageSlider images={catalogImages}/>
       </div>
       <Products products={products}/>
