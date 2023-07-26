@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import Image from 'next/legacy/image'
-
 import classes from './hero.module.css'
 
 export default function Hero() {
@@ -15,11 +13,9 @@ export default function Hero() {
         </button>
       </div>
       <div className='image-container'>
-        <Image
+        <img
           src='/next.svg'
           alt='NextJS Logo'
-          layout='fill'
-          objectFit='contain'
         />
       </div>
     </div>

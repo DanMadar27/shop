@@ -143,3 +143,12 @@ input[type="submit"]:disabled {
   color: rgb(var(--error));
   font-weight: 700;
 }
+
+/* List Styles */
+ul {
+  padding: 1rem;
+}
+
+li {
+  padding: 1rem;
+}
