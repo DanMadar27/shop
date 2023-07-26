@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import ImageSlider from '../..//components/ImageSlider';
 import Products from '../../components/products/Products';
 
-import classes from './home.module.css';
+import styles from './home.module.css';
 
 import Product from '../../models/Product';
 
@@ -88,8 +88,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
+    <div className={styles.container}>
+      <div className={styles.header}>
         {/* here put shop logo */}
         <img
           src='/next.svg'
@@ -99,7 +99,7 @@ export default function Home() {
         />
         <h1>Shop</h1>
       </div>
-      <div className={classes.catalog}>
+      <div className={styles.catalog}>
         {/* here is catalog images carousel */}
         <ImageSlider images={catalogImages}/>
       </div>

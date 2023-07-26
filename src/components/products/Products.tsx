@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import ProductModel from "../../models/Product";
 import Product from "./ProductCard";
 
-import classes from './Products.module.css';
+import styles from './Products.module.css';
 
 interface Props {
   products: ProductModel[];
@@ -14,7 +14,7 @@ const Products: NextPage<Props> = (props) => {
   const { products } = props;
 
   return (
-    <ul className={classes.container}>
+    <ul className={styles.container}>
       {products.map((product) => (
         <Product product={product} />
       ))}

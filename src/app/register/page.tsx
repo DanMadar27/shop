@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 import RegisterForm from './RegisterForm';
 
-import classes from './register.module.css';
+import styles from './register.module.css';
 
 export default function Register() {
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <div className='filled'>
         <h1>Shop</h1>
       </div>

@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 import LoginForm from './LoginForm';
 
-import classes from './login.module.css';
+import styles from './login.module.css';
 
 export default function Login() {
   return (
-    <div className={classes.container}>
+    <div className={styles.container}>
       <div className='filled'>
         <h1>Shop</h1>
       </div>
