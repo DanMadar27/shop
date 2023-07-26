@@ -1,4 +1,6 @@
-import Image from 'next/image'
+import Link from 'next/link';
+
+import Image from 'next/legacy/image'
 
 import classes from './hero.module.css'
 
@@ -8,7 +10,9 @@ export default function Home() {
       <div>
         <h1>Welcome To The Shop</h1>
         <p>Your place to buy products</p>
-        <button>Join Now</button>
+        <button>
+          <Link href='/register'>Join Today</Link>
+        </button>
       </div>
       <div className='image-container'>
         <Image
