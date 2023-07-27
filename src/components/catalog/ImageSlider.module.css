@@ -7,7 +7,7 @@
 .slider {
   display: flex;
   height: 100%;
-  animation: slide 10s infinite; /* Adjust the duration and timing function as needed */
+  /* animation: slide 10s infinite; *//* Adjust the duration and timing function as needed */
 }
 
 .slider img {
