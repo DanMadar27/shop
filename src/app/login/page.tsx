@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import LoginForm from './LoginForm';
+import LoginForm from '../../components/forms/LoginForm';
 
 import styles from './login.module.css';
 

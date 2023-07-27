@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../../components/forms/RegisterForm';
 
 import styles from './register.module.css';
 
