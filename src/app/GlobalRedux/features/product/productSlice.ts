@@ -15,14 +15,14 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProduct: (state: ProductState, action: any) => {
+    setProduct: (state: ProductState, action: any): void => {
       const product = action.payload;
       
       state.value = state.value.map( (p) => {
         return p.id === product.id ? product : p
       });
     },
-    setProducts: (state: ProductState, action: any) => {
+    setProducts: (state: ProductState, action: any): void => {
       state.value = action.payload;
     },
   }
