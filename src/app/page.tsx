@@ -1,15 +1,23 @@
-import Link from 'next/link';
+'use client';
+
+import { useRouter } from 'next/navigation'
 
 import styles from './hero.module.css'
 
 export default function Hero() {
+  const router = useRouter();
+
+  const handleJoin = () => {
+    router.push('/register')
+  };
+
   return (
     <div className={styles.container}>
       <div>
         <h1>Welcome To The Shop</h1>
         <p>Your place to buy products</p>
-        <button>
-          <Link href='/register'>Join Today</Link>
+        <button onClick={handleJoin}>
+          Join Today
         </button>
       </div>
       <div className='image-container'>
