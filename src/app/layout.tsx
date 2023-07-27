@@ -1,4 +1,5 @@
 import { GlobalContextProvider } from './Context/store';
+import { GlobalProvider } from './GlobalRedux/provider';
 
 import './globals.css'
 import type { Metadata } from 'next'
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GlobalContextProvider>
-          {children}
+          <GlobalProvider>
+            {children}
+          </GlobalProvider>
         </GlobalContextProvider>
       </body>
     </html>

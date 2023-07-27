@@ -1,7 +1,10 @@
 'use client';
 
-import { useGlobalContext } from '../Context/store';
-import { useState, useEffect } from 'react';
+import { RootState } from '../GlobalRedux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProducts } from '../GlobalRedux/features/product/productSlice';
+
+import { useEffect } from 'react';
 import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
@@ -88,14 +91,16 @@ async function getProducts(): Promise<Product[]> {
 
 export default function Home() {
   const { data, error } = useSWR('/api/products', getProducts);
-  const { products, setProducts } = useGlobalContext();
+  const products = useSelector((state: RootState) => state.product.value);
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (data) {
-      setProducts(data);
+      dispatch(setProducts(data));
     }
     return () => {
-      setProducts([]);
+      dispatch(setProducts([]));
     }
   }, [data]);
 

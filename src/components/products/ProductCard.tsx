@@ -1,6 +1,8 @@
 // import NextPage generic type
 import { NextPage } from 'next';
-import { useGlobalContext } from '../../app/Context/store';
+
+import { useDispatch } from 'react-redux';
+import { setProduct } from '../../app/GlobalRedux/features/product/productSlice';
 
 import ProductModel from '../../models/Product';
 
@@ -20,11 +22,13 @@ function favoriteIcon(isFavorite: boolean) {
 
 const ProductCard: NextPage<Props> = (props) => {
   const { product } = props;
-  const { setProduct } = useGlobalContext();
+  const dispatch = useDispatch();
 
   const toggleFavorite = async () => {
-    product.isFavorite = !product.isFavorite;
-    setProduct(product);
+    const newProduct = { ...product };
+    newProduct.isFavorite = !newProduct.isFavorite;
+    
+    dispatch(setProduct(newProduct));
   }
 
   return (      
