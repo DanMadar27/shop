@@ -1,11 +1,11 @@
 'use client';
 
 import { configureStore } from '@reduxjs/toolkit';
-import productReducer from './features/product/productSlice';
+import productsReducer from './features/products/productSlice';
 
 export const store = configureStore({
     reducer: {
-        product: productReducer
+        products: productsReducer
     }
 })
 

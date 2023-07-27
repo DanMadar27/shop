@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 
 import { useDispatch } from 'react-redux';
-import { setProduct } from '../../app/GlobalRedux/features/product/productSlice';
+import { setProduct } from '../../app/GlobalRedux/features/products/productSlice';
 
 import ProductModel from '../../models/Product';
 
@@ -28,6 +28,7 @@ const ProductCard: NextPage<Props> = (props) => {
     const newProduct = { ...product };
     newProduct.isFavorite = !newProduct.isFavorite;
     
+    // @ts-ignore. This is a redux action
     dispatch(setProduct(newProduct));
   }
 

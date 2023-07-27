@@ -2,7 +2,7 @@
 
 import { RootState } from '../GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProducts } from '../GlobalRedux/features/product/productSlice';
+import { setProducts } from '../GlobalRedux/features/products/productSlice';
 
 import { useEffect } from 'react';
 import useSWR from 'swr';
@@ -90,16 +90,18 @@ async function getProducts(): Promise<Product[]> {
 }
 
 export default function Home() {
-  const { data, error } = useSWR('/api/products', getProducts);
-  const products = useSelector((state: RootState) => state.product.value);
+  const { data, error } = useSWR<Product[]>('/api/products', getProducts);
+  const products = useSelector((state: RootState) => state.products.value);
   
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (data) {
+      // @ts-ignore. This is a redux action
       dispatch(setProducts(data));
     }
     return () => {
+      // @ts-ignore. This is a redux action
       dispatch(setProducts([]));
     }
   }, [data]);
