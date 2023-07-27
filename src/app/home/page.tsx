@@ -18,6 +18,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 1',
       description: 'Product 1 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -25,6 +26,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 2',
       description: 'Product 2 description',
       price: 150,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -32,6 +34,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 3',
       description: 'Product 3 description',
       price: 200,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -39,6 +42,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 4',
       description: 'Product 4 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -46,6 +50,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 5',
       description: 'Product 5 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -53,6 +58,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 6',
       description: 'Product 6 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -60,6 +66,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 7',
       description: 'Product 7 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
     {
@@ -67,6 +74,7 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 8',
       description: 'Product 8 description',
       price: 100,
+      isFavorite: false,
       image: '/vercel.svg'
     },
   ]

@@ -9,6 +9,14 @@ interface Props {
   product: ProductModel;
 }
 
+function favoriteIcon(isFavorite: boolean) {
+  if (isFavorite) {
+    return <span className='material-icons'>favorite</span>;
+  }
+
+  return <span className='material-icons'>favorite_border</span>;
+}
+
 const ProductCard: NextPage<Props> = (props) => {
   const { product } = props;
 
@@ -30,7 +38,7 @@ const ProductCard: NextPage<Props> = (props) => {
           Add to cart
         </button>
         <button className='icon-button'>
-          <span className='material-icons'>favorite</span>
+          {favoriteIcon(product.isFavorite)}
         </button>
       </div>
 
