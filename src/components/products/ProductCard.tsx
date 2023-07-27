@@ -1,7 +1,8 @@
 // import NextPage generic type
-import { NextPage } from "next";
+import { NextPage } from 'next';
+import { useGlobalContext } from '../../app/Context/store';
 
-import ProductModel from "../../models/Product";
+import ProductModel from '../../models/Product';
 
 import 'material-icons/iconfont/filled.css';
 
@@ -19,9 +20,15 @@ function favoriteIcon(isFavorite: boolean) {
 
 const ProductCard: NextPage<Props> = (props) => {
   const { product } = props;
+  const { setProduct } = useGlobalContext();
+
+  const toggleFavorite = async () => {
+    product.isFavorite = !product.isFavorite;
+    setProduct(product);
+  }
 
   return (      
-    <li key={product.id}>
+    <li>
       <img
         src={product.image}
         alt={product.name}
@@ -37,7 +44,7 @@ const ProductCard: NextPage<Props> = (props) => {
         <button>
           Add to cart
         </button>
-        <button className='icon-button'>
+        <button className='icon-button' onClick={toggleFavorite}>
           {favoriteIcon(product.isFavorite)}
         </button>
       </div>

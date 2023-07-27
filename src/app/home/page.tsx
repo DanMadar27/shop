@@ -1,3 +1,9 @@
+'use client';
+
+import { useGlobalContext } from '../Context/store';
+import { useState, useEffect } from 'react';
+import useSWR from 'swr';
+
 import ImageSlider from '../../components/catalog/ImageSlider';
 import Products from '../../components/products/Products';
 
@@ -80,8 +86,20 @@ async function getProducts(): Promise<Product[]> {
   ]
 }
 
-export default async function Home() {
-  const products = await getProducts();
+export default function Home() {
+  const { data, error } = useSWR('/api/products', getProducts);
+  const { products, setProducts } = useGlobalContext();
+
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+    return () => {
+      setProducts([]);
+    }
+  }, [data]);
+
+  if (!data) return <div></div>;
 
   return (
     <div className={styles.container}>
@@ -98,7 +116,7 @@ export default async function Home() {
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
-      <Products products={products}/>
+      <Products products={products} />
     </div>
   );
 }

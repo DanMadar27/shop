@@ -1,8 +1,8 @@
 // import NextPage generic type
-import { NextPage } from "next";
+import { NextPage } from 'next';
 
-import ProductModel from "../../models/Product";
-import Product from "./ProductCard";
+import ProductModel from '../../models/Product';
+import ProductCard from './ProductCard';
 
 import styles from './Products.module.css';
 
@@ -16,7 +16,7 @@ const Products: NextPage<Props> = (props) => {
   return (
     <ul className={styles.container}>
       {products.map((product) => (
-        <Product product={product} />
+        <ProductCard product={product} key={product.id}/>
       ))}
     </ul>
   );
