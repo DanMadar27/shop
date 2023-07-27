@@ -3,6 +3,8 @@ import { NextPage } from "next";
 
 import ProductModel from "../../models/Product";
 
+import 'material-icons/iconfont/filled.css';
+
 interface Props {
   product: ProductModel;
 }
@@ -23,7 +25,15 @@ const ProductCard: NextPage<Props> = (props) => {
       <p>{product.description}</p>
       <p>{product.price}</p>
       
-      <button>Add to cart</button>
+      <div className='buttons'>
+        <button>
+          Add to cart
+        </button>
+        <button className='icon-button'>
+          <span className='material-icons'>favorite</span>
+        </button>
+      </div>
+
     </li>
   );
 };

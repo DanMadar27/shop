@@ -83,6 +83,19 @@ button > a {
   text-decoration: none;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Icon Styles */
+.icon-button {
+  background: rgb(var(--background-rgb));
+  color: rgb(var(--primary));
+  cursor: pointer;
+  padding: 0;
+}
+
 /* Image Styles */
 img {
   max-width: 100%;
