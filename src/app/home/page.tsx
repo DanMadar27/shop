@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-
 import ImageSlider from '../../components/catalog/ImageSlider';
 import Products from '../../components/products/Products';
 
@@ -76,16 +72,8 @@ async function getProducts(): Promise<Product[]> {
   ]
 }
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    getProducts().then((products) => setProducts(products));
-
-    return () => {
-      setProducts([]);
-    }
-  }, []);
+export default async function Home() {
+  const products = await getProducts();
 
   return (
     <div className={styles.container}>
