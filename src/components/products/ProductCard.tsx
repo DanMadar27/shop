@@ -33,7 +33,7 @@ const ProductCard: NextPage<Props> = (props) => {
   }
 
   return (      
-    <li>
+    <li className='card'>
       <img
         src={product.image}
         alt={product.name}
