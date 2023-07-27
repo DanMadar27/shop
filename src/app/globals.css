@@ -143,6 +143,7 @@ input[type="submit"]:disabled {
 /* List Styles */
 ul {
   padding: 1rem;
+  list-style-type: none;
 }
 
 li {
