@@ -1,4 +1,5 @@
 import Modal from './Modal';
+import ProductContent from '../products/ProductContent';
 
 import Product from '@/models/Product';
 
@@ -17,17 +18,8 @@ const Wishlist = (props: Props) => {
       <ul>
         {products.map((product) => (
           <li key={product.id}>
-            <img
-              src={product.image}
-              alt={product.name}
-              width={200}
-              height={100}
-            />
+            <ProductContent product={product} />
             
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <p><b>Price</b>: {product.price}</p>
-
             <button>
               Add to cart
             </button>
