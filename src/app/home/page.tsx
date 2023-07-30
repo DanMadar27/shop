@@ -4,11 +4,12 @@ import { RootState } from '../GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '../GlobalRedux/features/products/productSlice';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
 import Products from '../../components/products/Products';
+import Wishlist from '../../components/modals/Wishlist';
 
 import styles from './home.module.css';
 
@@ -95,6 +96,8 @@ export default function Home() {
   
   const dispatch = useDispatch();
 
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+
   useEffect(() => {
     if (data) {
       // @ts-ignore. This is a redux action
@@ -105,6 +108,14 @@ export default function Home() {
       dispatch(setProducts([]));
     }
   }, [data]);
+
+  const openWishlist = () => {
+    setIsWishlistOpen(true);
+  }
+
+  const closeWishlist = () => {
+    setIsWishlistOpen(false);
+  }
 
   if (!data) return <div></div>;
 
@@ -123,6 +134,10 @@ export default function Home() {
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
+      <button onClick={openWishlist}>Open Wishlist</button>
+      <Wishlist isOpen={isWishlistOpen} onClose={closeWishlist}>
+        <p>Wishlist content</p>
+      </Wishlist>
       <Products products={products} />
     </div>
   );
