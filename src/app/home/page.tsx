@@ -135,9 +135,11 @@ export default function Home() {
         <ImageSlider images={catalogImages}/>
       </div>
       <button onClick={openWishlist}>Open Wishlist</button>
-      <Wishlist isOpen={isWishlistOpen} onClose={closeWishlist}>
-        <p>Wishlist content</p>
-      </Wishlist>
+      <Wishlist
+        isOpen={isWishlistOpen} 
+        onClose={closeWishlist} 
+        products={products.filter(p => p.isFavorite)}
+      />
       <Products products={products} />
     </div>
   );

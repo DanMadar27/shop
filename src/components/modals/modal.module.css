@@ -11,6 +11,10 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   background-color: rgb(var(--background-rgb));
   padding: 20px;
   border-radius: 8px;
