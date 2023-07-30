@@ -25,6 +25,14 @@ const ProductCard: NextPage<Props> = (props) => {
   const { product } = props;
   const dispatch = useDispatch();
 
+  const addToCart = async () => {
+    const newProduct = { ...product };
+    newProduct.amount += 1;
+    
+    // @ts-ignore
+    dispatch(setProduct(newProduct));
+  }
+
   const toggleFavorite = async () => {
     const newProduct = { ...product };
     newProduct.isFavorite = !newProduct.isFavorite;
@@ -38,7 +46,7 @@ const ProductCard: NextPage<Props> = (props) => {
       <ProductContent product={product} />
       
       <div className='buttons'>
-        <button>
+        <button onClick={addToCart}>
           Add to cart
         </button>
         <button className='icon-button' onClick={toggleFavorite}>
