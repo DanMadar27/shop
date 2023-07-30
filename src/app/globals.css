@@ -31,6 +31,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .flex-column-center {
@@ -38,6 +39,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .flex-row-between {
@@ -51,6 +53,10 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.flex-row-center > button {
+  margin: 0;
 }
 
 /* Text Styles */
@@ -109,6 +115,11 @@ button {
 
 button:hover {
   font-weight: 700;
+}
+
+button:disabled {
+  background-color: rgb(var(--secondary));
+  cursor: not-allowed;
 }
 
 button > a {

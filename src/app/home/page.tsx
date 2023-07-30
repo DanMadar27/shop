@@ -14,6 +14,7 @@ import Wishlist from '../../components/modals/Wishlist';
 import styles from './home.module.css';
 
 import Product from '../../models/Product';
+import CartModal from '@/components/modals/CartModal';
 
 const catalogImages = [
   '/next.svg',
@@ -29,6 +30,7 @@ async function getProducts(): Promise<Product[]> {
       description: 'Product 1 description',
       price: 100,
       isFavorite: false,
+      amount: 3,
       image: '/vercel.svg'
     },
     {
@@ -37,6 +39,7 @@ async function getProducts(): Promise<Product[]> {
       description: 'Product 2 description',
       price: 150,
       isFavorite: false,
+      amount: 2,
       image: '/vercel.svg'
     },
     {
@@ -44,7 +47,8 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 3',
       description: 'Product 3 description',
       price: 200,
-      isFavorite: false,
+      isFavorite: true,
+      amount: 1,
       image: '/vercel.svg'
     },
     {
@@ -52,7 +56,8 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 4',
       description: 'Product 4 description',
       price: 100,
-      isFavorite: false,
+      isFavorite: true,
+      amount: 0,
       image: '/vercel.svg'
     },
     {
@@ -60,7 +65,8 @@ async function getProducts(): Promise<Product[]> {
       name: 'Product 5',
       description: 'Product 5 description',
       price: 100,
-      isFavorite: false,
+      isFavorite: true,
+      amount: 0,
       image: '/vercel.svg'
     },
     {
@@ -69,6 +75,7 @@ async function getProducts(): Promise<Product[]> {
       description: 'Product 6 description',
       price: 100,
       isFavorite: false,
+      amount: 0,
       image: '/vercel.svg'
     },
     {
@@ -77,6 +84,7 @@ async function getProducts(): Promise<Product[]> {
       description: 'Product 7 description',
       price: 100,
       isFavorite: false,
+      amount: 0,
       image: '/vercel.svg'
     },
     {
@@ -85,6 +93,7 @@ async function getProducts(): Promise<Product[]> {
       description: 'Product 8 description',
       price: 100,
       isFavorite: false,
+      amount: 0,
       image: '/vercel.svg'
     },
   ]
@@ -97,6 +106,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -115,6 +125,14 @@ export default function Home() {
 
   const closeWishlist = () => {
     setIsWishlistOpen(false);
+  }
+
+  const openCartModal = () => {
+    setIsCartModalOpen(true);
+  }
+
+  const closeCartModal = () => {
+    setIsCartModalOpen(false);
   }
 
   if (!data) return <div></div>;
@@ -139,6 +157,12 @@ export default function Home() {
         isOpen={isWishlistOpen} 
         onClose={closeWishlist} 
         products={products.filter(p => p.isFavorite)}
+      />
+      <button onClick={openCartModal}>Open Cart</button>
+      <CartModal
+        isOpen={isCartModalOpen} 
+        onClose={closeCartModal} 
+        products={products.filter(p => p.amount)}
       />
       <Products products={products} />
     </div>
