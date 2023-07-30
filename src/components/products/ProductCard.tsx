@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setProduct } from '../../app/GlobalRedux/features/products/productSlice';
 
 import ProductModel from '../../models/Product';
+import ProductContent from './ProductContent';
 
 import 'material-icons/iconfont/filled.css';
 
@@ -34,16 +35,7 @@ const ProductCard: NextPage<Props> = (props) => {
 
   return (      
     <li className='card'>
-      <img
-        src={product.image}
-        alt={product.name}
-        width={200}
-        height={200}
-      />
-
-      <h3>{product.name}</h3>
-      <p>{product.description}</p>
-      <p>{product.price}</p>
+      <ProductContent product={product} />
       
       <div className='buttons'>
         <button>
