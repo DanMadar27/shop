@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-import styles from './hero.module.css'
+import styles from './home.module.css';
 
 export default function Hero() {
   const router = useRouter();
