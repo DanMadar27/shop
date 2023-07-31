@@ -27,7 +27,7 @@ async function getProducts(): Promise<Product[]> {
     {
       id: '1',
       name: 'Product 1',
-      description: 'Product 1 description',
+      description: 'Product 1 description. more mock description',
       price: 100,
       isFavorite: false,
       amount: 3,

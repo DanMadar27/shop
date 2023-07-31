@@ -1,5 +1,6 @@
 // import NextPage generic type
 import { NextPage } from 'next';
+import Link from 'next/link';
 
 import { useDispatch } from 'react-redux';
 import { setProduct } from '../../app/GlobalRedux/features/products/productSlice';
@@ -25,14 +26,6 @@ const ProductCard: NextPage<Props> = (props) => {
   const { product } = props;
   const dispatch = useDispatch();
 
-  const addToCart = async () => {
-    const newProduct = { ...product };
-    newProduct.amount += 1;
-    
-    // @ts-ignore
-    dispatch(setProduct(newProduct));
-  }
-
   const toggleFavorite = async () => {
     const newProduct = { ...product };
     newProduct.isFavorite = !newProduct.isFavorite;
@@ -46,9 +39,10 @@ const ProductCard: NextPage<Props> = (props) => {
       <ProductContent product={product} />
       
       <div className='buttons'>
-        <button onClick={addToCart}>
-          Add to cart
-        </button>
+        <Link href={`/products/${product.id}`}>
+          SHOP NOW
+        </Link>
+        
         <button className='icon-button' onClick={toggleFavorite}>
           {favoriteIcon(product.isFavorite)}
         </button>
