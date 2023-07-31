@@ -139,16 +139,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        {/* here put shop logo */}
-        <img
-          src='/next.svg'
-          alt='Shop Logo'
-          width={200}
-          height={200}
-        />
-        <h1>Shop</h1>
-      </div>
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
