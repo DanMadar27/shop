@@ -11,7 +11,7 @@ import ImageSlider from '../../components/catalog/ImageSlider';
 import Products from '../../components/products/Products';
 import Wishlist from '../../components/modals/Wishlist';
 
-import styles from './home.module.css';
+import styles from './products.module.css';
 
 import Product from '../../models/Product';
 import CartModal from '@/components/modals/CartModal';
