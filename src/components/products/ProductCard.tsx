@@ -18,14 +18,12 @@ const ProductCard: NextPage<Props> = (props) => {
   return (      
     <li className='card'>
       <ProductContent product={product} />
-      
       <div className='buttons'>
         <Link href={`/products/${product.id}`}>
           SHOP NOW
         </Link>
         <LikeButton product={product} />
       </div>
-
     </li>
   );
 };

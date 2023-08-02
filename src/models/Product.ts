@@ -7,3 +7,13 @@ export default interface Product {
   isFavorite: boolean;
   amount: number;
 }
+
+export const initialProduct: Product = {
+  id: '',
+  name: '',
+  description: '',
+  price: 0,
+  image: '',
+  isFavorite: false,
+  amount: 0,
+};
