@@ -6,8 +6,6 @@ import Product from '@/models/Product';
 
 import IconButton from './IconButton';
 
-import 'material-icons/iconfont/filled.css';
-
 interface Props {
   product: Product;
 }

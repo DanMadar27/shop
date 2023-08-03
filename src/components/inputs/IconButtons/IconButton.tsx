@@ -5,11 +5,15 @@ import 'material-icons/iconfont/filled.css';
 interface Props {
   icon: string;
   onClick: () => void;
+  disabled?: boolean;
+  transparent?: boolean;
 }
 
-const IconButton: React.FC<Props> = ({ icon, onClick }) => {
+const IconButton: React.FC<Props> = ({ icon, onClick, disabled, transparent }) => {
+  const className = transparent ? '' : 'icon-button';
+
   return (
-    <button className='icon-button' onClick={onClick}>
+    <button className={className} onClick={onClick} disabled={disabled}>
       <span className='material-icons'>
         {icon}
       </span>

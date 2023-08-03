@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-import 'material-icons/iconfont/filled.css';
+import IconButton from './IconButton';
 
 interface Props {
   initialValue?: number;
@@ -21,15 +20,18 @@ const CounterButton: React.FC<Props> = ({ initialValue = 0 }) => {
 
   return (
     <div className='flex-row-center'>
-      <button onClick={handleDecrement} disabled={!count}>
-        <span className='material-icons'>remove</span>
-      </button>
-
+      <IconButton
+        icon='remove'
+        onClick={handleDecrement}
+        disabled={!count}
+        transparent={true}
+      />
       <span>{count}</span>
-
-      <button onClick={handleIncrement}>
-        <span className='material-icons'>add</span>
-      </button>
+      <IconButton
+        icon='add'
+        onClick={handleIncrement}
+        transparent={true}
+      />
     </div>
   );
 };

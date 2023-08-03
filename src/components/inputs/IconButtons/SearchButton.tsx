@@ -1,8 +1,6 @@
 import React from 'react';
 import IconButton from './IconButton';
 
-import 'material-icons/iconfont/filled.css';
-
 interface Props {
   onClick: () => void;
 }
