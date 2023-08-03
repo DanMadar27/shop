@@ -9,7 +9,6 @@
 }
 
 .container > div {
-  width: 100%;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -27,6 +26,6 @@
 }
 
 .catalog {
-  width: 80%;
+  width: 100%;
   padding: 1rem 2rem;
 }

@@ -1,6 +1,8 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import SearchButton from '../IconButtons/SearchButton';
 
+import styles from './SearchBar.module.css';
+
 interface Props {
   onSearch: (query: string) => void;
 }
@@ -24,7 +26,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className={`${styles.container} col-9`}>
       <input
         type='text'
         placeholder='Search...'
