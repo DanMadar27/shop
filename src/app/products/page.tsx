@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
+import SearchBar from '../../components/inputs/SearchBar';
 import Products from '../../components/products/Products';
 import Wishlist from '../../components/modals/Wishlist';
 
@@ -119,6 +120,7 @@ export default function Home() {
     }
   }, [data]);
 
+  // Start Modals //
   const openWishlist = () => {
     setIsWishlistOpen(true);
   }
@@ -134,6 +136,11 @@ export default function Home() {
   const closeCartModal = () => {
     setIsCartModalOpen(false);
   }
+  // End Modals //
+
+  const handleSearch = (query: string) => {
+    console.log(query);
+  }
 
   if (!data) return <div></div>;
 
@@ -142,6 +149,7 @@ export default function Home() {
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
+      <SearchBar onSearch={handleSearch} />
       <button onClick={openWishlist}>Open Wishlist</button>
       <Wishlist
         isOpen={isWishlistOpen} 
