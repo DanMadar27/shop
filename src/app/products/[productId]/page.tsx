@@ -6,7 +6,7 @@ import Product from '@/models/Product';
 import { initialProduct } from '@/models/Product';
 
 import ProductContent from '@/components/products/ProductContent';
-import LikeButton from '@/components/inputs/LikeButton';
+import LikeButton from '@/components/inputs/IconButtons/LikeButton';
 
 import styles from './product.module.css';
 import 'material-icons/iconfont/filled.css';

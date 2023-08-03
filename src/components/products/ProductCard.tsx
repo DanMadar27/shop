@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import ProductModel from '../../models/Product';
 import ProductContent from './ProductContent';
-import LikeButton from '../inputs/LikeButton';
+import LikeButton from '../inputs/IconButtons/LikeButton';
 
 import 'material-icons/iconfont/filled.css';
 

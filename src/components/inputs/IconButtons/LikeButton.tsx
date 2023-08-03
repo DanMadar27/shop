@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setProduct } from '../../app/GlobalRedux/features/products/productSlice';
+import { setProduct } from '../../../app/GlobalRedux/features/products/productSlice';
 
 import Product from '@/models/Product';
 

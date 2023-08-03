@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
-import SearchButton from './SearchButton';
+import SearchButton from '../IconButtons/SearchButton';
 
 interface Props {
   onSearch: (query: string) => void;

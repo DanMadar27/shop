@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
-import SearchBar from '../../components/inputs/SearchBar';
+import SearchBar from '../../components/inputs/SearchBar/SearchBar';
 import Products from '../../components/products/Products';
 import Wishlist from '../../components/modals/Wishlist';
 

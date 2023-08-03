@@ -1,6 +1,6 @@
 import Modal from './Modal';
 import ProductContent from '../products/ProductContent';
-import CounterButton from '../inputs/CounterButton';
+import CounterButton from '../inputs/IconButtons/CounterButton';
 
 import Product from '@/models/Product';
 
