@@ -12,7 +12,7 @@ const IconButton: React.FC<Props> = ({ icon, onClick }) => {
     <button className='icon-button' onClick={onClick}>
       <span className='material-icons'>
         {icon}
-      </span>;
+      </span>
     </button>
   );
 };

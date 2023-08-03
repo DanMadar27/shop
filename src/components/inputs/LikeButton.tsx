@@ -4,19 +4,16 @@ import { setProduct } from '../../app/GlobalRedux/features/products/productSlice
 
 import Product from '@/models/Product';
 
-import 'material-icons/iconfont/filled.css';
+import IconButton from './IconButton';
 
+import 'material-icons/iconfont/filled.css';
 
 interface Props {
   product: Product;
 }
 
-function favoriteIcon(isFavorite: boolean) {
-  if (isFavorite) {
-    return <span className='material-icons'>favorite</span>;
-  }
-
-  return <span className='material-icons'>favorite_border</span>;
+function favoriteIcon(isFavorite: boolean): string {
+  return isFavorite ? 'favorite' : 'favorite_border';
 }
 
 const LikeButton: React.FC<Props> = (props) => {
@@ -32,9 +29,7 @@ const LikeButton: React.FC<Props> = (props) => {
   }
 
   return (
-    <button className='icon-button' onClick={toggleFavorite}>
-      {favoriteIcon(product.isFavorite)}
-    </button>
+    <IconButton icon={favoriteIcon(product.isFavorite)} onClick={toggleFavorite} />
   );
 };
 
