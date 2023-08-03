@@ -103,7 +103,7 @@ async function getProducts(): Promise<Product[]> {
 export default function Home() {
   const { data, error } = useSWR<Product[]>('/api/products', getProducts);
   const products = useSelector((state: RootState) => state.products.value);
-  
+
   const dispatch = useDispatch();
 
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
@@ -139,7 +139,14 @@ export default function Home() {
   // End Modals //
 
   const handleSearch = (query: string) => {
-    console.log(query);
+    // This will be API call in the future
+    //  so add regex for security in security task
+    const filteredProducts = products.filter(
+      p => p.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // @ts-ignore
+    dispatch(setProducts(filteredProducts));
   }
 
   if (!data) return <div></div>;
