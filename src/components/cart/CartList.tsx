@@ -1,5 +1,5 @@
 import React from 'react';
-import CartProduct from './CartProduct';
+import CartProduct from './CartProduct/CartProduct';
 import Product from '@/models/Product';
 
 interface CartListProps {
@@ -8,11 +8,11 @@ interface CartListProps {
 
 const CartList: React.FC<CartListProps> = ({ products }) => {
   return (
-    <div>
+    <ul>
       {products.map((product) => (
         <CartProduct key={product.id} product={product} />
       ))}
-    </div>
+    </ul>
   );
 };
 

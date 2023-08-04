@@ -1,8 +1,10 @@
 import React from 'react';
 
 import Product from '@/models/Product';
-import CounterButton from '../inputs/IconButtons/CounterButton';
-import RemoveButton from '../inputs/IconButtons/RemoveButton';
+import CounterButton from '../../inputs/IconButtons/CounterButton';
+import RemoveButton from '../../inputs/IconButtons/RemoveButton';
+
+import styles from './CartProduct.module.css';
 
 interface Props {
   product: Product;
@@ -14,19 +16,20 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div>
+    <li className={styles.container}>
       <img
         src={product.image}
         alt={product.name}
       />
-      <p>{product.name}</p>
-      <p>{product.price}</p>
-
+      <div>
+        <p>{product.name}</p>
+        <p>{product.price}</p>
+      </div>
       <div className='flex-row-between'>
         <CounterButton initialValue={product.amount} />
         <RemoveButton onClick={removeProduct} />
       </div>
-    </div>
+    </li>
   );
 };
 
