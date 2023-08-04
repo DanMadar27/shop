@@ -37,9 +37,8 @@ const products = [
 ];
 
 export default function Cart() {
-
   return (
-    <div className={styles.container}>
+    <div className='container col-4'>
       <ButtonsHeader backLink={'/products'}/>
       <h1>My Cart</h1>
       <CartContent products={products} />
