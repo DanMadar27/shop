@@ -1,6 +1,6 @@
 'use client';
 
-import ButtonsHeader from '@/components/inputs/ButtonsHeader/ButtonsHeader';
+import ButtonsHeader from '@/components/cart/CartHeader/CartHeader';
 import CartContent from '@/components/cart/Cart';
 
 import styles from './cart.module.css';
