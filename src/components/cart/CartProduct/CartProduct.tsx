@@ -23,7 +23,7 @@ const CartProduct: React.FC<Props> = ({ product }) => {
       />
       <div>
         <p>{product.name}</p>
-        <p>{product.price}</p>
+        <p>${product.price}</p>
       </div>
       <div className='flex-row-between'>
         <CounterButton initialValue={product.amount} />
