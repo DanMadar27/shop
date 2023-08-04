@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import CartList from './CartList';
+import CartList from '../CartList';
 
 import Product from '@/models/Product';
+
+import styles from './cart.module.css';
 
 interface Props {
   products: Product[];
@@ -24,10 +26,10 @@ const CartContent: React.FC<Props> = ({ products }) => {
   return (
     <div>
       <CartList products={products} />
-      <div>
+      <div className={styles.checkout}>
         <p>Total Price: ${totalPrice}</p>
+        <button>Checkout</button>
       </div>
-      <button>Checkout</button>
     </div>
   );
 };
