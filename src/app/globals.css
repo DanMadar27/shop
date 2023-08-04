@@ -175,8 +175,6 @@ a {
 
 button {
   font-size: 1rem;
-
-  margin-top: 1rem;
   padding: 0.5rem 1rem;
 
   border-radius: 0.5rem;
@@ -200,6 +198,10 @@ button:disabled {
 button > a {
   color: rgb(var(--button-text));
   text-decoration: none;
+}
+
+button > span {
+  margin: 0 0.5rem;
 }
 
 .buttons {
