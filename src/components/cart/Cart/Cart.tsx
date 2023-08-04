@@ -27,7 +27,8 @@ const CartContent: React.FC<Props> = ({ products }) => {
     <div>
       <CartList products={products} />
       <div className={styles.checkout}>
-        <p>Total Price: ${totalPrice}</p>
+        <p>Total: <b>${totalPrice}</b></p>
+        <p>Delivery: <b>Free</b></p>
         <button>Checkout</button>
       </div>
     </div>
