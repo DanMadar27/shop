@@ -10,7 +10,7 @@ interface Props {
 }
 
 const IconButton: React.FC<Props> = ({ icon, onClick, disabled, transparent }) => {
-  const className = transparent ? '' : 'icon-button';
+  const className = transparent ? 'filled-icon-button' : 'icon-button';
 
   return (
     <button className={className} onClick={onClick} disabled={disabled}>

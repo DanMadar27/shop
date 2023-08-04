@@ -223,6 +223,10 @@ button > span {
   padding: 0;
 }
 
+.filled-icon-button {
+  padding: 0.2rem;
+}
+
 /* Image Styles */
 img {
   max-width: 100%;
