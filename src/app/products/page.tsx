@@ -156,7 +156,6 @@ export default function Home() {
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
-      <SearchBar onSearch={handleSearch} />
       <button onClick={openWishlist}>Open Wishlist</button>
       <Wishlist
         isOpen={isWishlistOpen} 
@@ -169,6 +168,7 @@ export default function Home() {
         onClose={closeCartModal} 
         products={products.filter(p => p.amount)}
       />
+      <SearchBar onSearch={handleSearch} />
       <Products products={products} />
     </div>
   );
