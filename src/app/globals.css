@@ -254,6 +254,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   margin-bottom: 15px;
   font-size: 1rem;
@@ -263,6 +264,7 @@ input[type="password"] {
 
 input[type="submit"] {
   width: 100%;
+  box-sizing: border-box;
   margin-top: 1rem;
   padding: 10px;
   background-color: rgb(var(--primary));
