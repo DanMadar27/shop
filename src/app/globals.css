@@ -59,6 +59,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .flex-row-center > button {
@@ -262,6 +263,7 @@ input[type="password"] {
 
 input[type="submit"] {
   width: 100%;
+  margin-top: 1rem;
   padding: 10px;
   background-color: rgb(var(--primary));
   color: rgb(var(--button-text));
