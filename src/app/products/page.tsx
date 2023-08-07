@@ -166,7 +166,6 @@ export default function Home() {
       <CartModal
         isOpen={isCartModalOpen} 
         onClose={closeCartModal} 
-        products={products.filter(p => p.amount)}
       />
       <SearchBar onSearch={handleSearch} />
       <Products products={products} />
