@@ -22,6 +22,16 @@ export default function RootLayout({
       <body className={inter.className}>
         <GlobalContextProvider>
           <GlobalProvider>
+          <div className='header'>
+            {/* here put shop logo */}
+            <img
+              src='/next.svg'
+              alt='Shop Logo'
+              width={200}
+              height={200}
+            />
+            <h1>Shop</h1>
+          </div>
             {children}
           </GlobalProvider>
         </GlobalContextProvider>

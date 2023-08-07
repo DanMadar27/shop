@@ -21,6 +21,18 @@ body {
 }
 
 /* Layout Styles */
+.header {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4rem;
+}
+
+.header > img {
+  margin: 0;
+}
+
 .container {
   min-width: 200px;
   max-width: 1200px;
