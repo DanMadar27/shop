@@ -2,7 +2,7 @@ import React from 'react';
 
 import Product from '@/models/Product';
 import CounterButton from '../../inputs/IconButtons/CounterButton';
-import RemoveButton from '../../inputs/IconButtons/RemoveButton';
+import RemoveProductButton from '@/components/inputs/Products/RemoveProductButton';
 
 import styles from './CartProduct.module.css';
 
@@ -27,7 +27,7 @@ const CartProduct: React.FC<Props> = ({ product }) => {
       </div>
       <div className='flex-row-between'>
         <CounterButton initialValue={product.amount} />
-        <RemoveButton onClick={removeProduct} />
+        <RemoveProductButton product={product} />
       </div>
     </li>
   );
