@@ -2,34 +2,24 @@ import React, { useState } from 'react';
 import IconButton from './IconButton';
 
 interface Props {
-  initialValue?: number;
+  value?: number;
+  increase: () => void;
+  decrease: () => void;
 }
 
-const CounterButton: React.FC<Props> = ({ initialValue = 0 }) => {
-  const [count, setCount] = useState(initialValue);
-
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-
+const CounterButton: React.FC<Props> = ({ value = 0, increase, decrease }) => {
   return (
     <div className='flex-row-center'>
       <IconButton
         icon='remove'
-        onClick={handleDecrement}
-        disabled={!count}
+        onClick={decrease}
+        disabled={!value}
         transparent={true}
       />
-      <span>{count}</span>
+      <span>{value}</span>
       <IconButton
         icon='add'
-        onClick={handleIncrement}
+        onClick={increase}
         transparent={true}
       />
     </div>

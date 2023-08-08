@@ -4,7 +4,7 @@ import { addProduct, removeProduct, changeAmount} from '@/app/GlobalRedux/featur
 
 import Modal from './Modal';
 import ProductContent from '../products/ProductContent';
-import CounterButton from '../inputs/IconButtons/CounterButton';
+import ChangeProductAmount from '../inputs/Products/ChangeProductAmount';
 
 import Product from '@/models/Product';
 
@@ -26,7 +26,7 @@ const CartModal = (props: Props) => {
         {products.map((product) => (
           <li key={product.id}>
             <ProductContent product={product} />
-            <CounterButton initialValue={product.amount} />
+            <ChangeProductAmount product={product} />
          </li>
         ))}
       </ul>
