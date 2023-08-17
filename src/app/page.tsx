@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 import styles from './home.module.css';
 
@@ -18,6 +19,9 @@ export default function Hero() {
         <p>Your place to buy products</p>
         <button onClick={handleJoin}>
           Join Today
+        </button>
+        <button>
+          <Link href='/products'>See Products</Link>
         </button>
       </div>
       <div className='image-container'>

@@ -17,6 +17,10 @@
     height: 100%;
     padding: 2rem;
   }
+
+  .container button {
+    margin: 0 0.5rem;
+  }
 }
 
 /* Mobile */
@@ -39,5 +43,9 @@
     min-height: 30%;
 
     padding: 2rem;
+  }
+
+  .container button {
+    margin: 0 0.5rem;
   }
 }

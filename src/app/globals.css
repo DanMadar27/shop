@@ -189,6 +189,9 @@ p {
 a {
   color: rgb(var(--primary));
   text-decoration: none;
+}
+
+a:hover {
   font-weight: 700;
 }
 
