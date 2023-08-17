@@ -43,7 +43,10 @@ const Navbar: React.FC = () => {
           Login
         </Link>
       </div>
-      <div className={styles.hamburger} onClick={toggleLinks}>
+      <div 
+        className={`${styles.hamburger} ${showLinks ? styles.open : ''}`}
+        onClick={toggleLinks}
+      >
         &#9776;
       </div>
     </nav>
