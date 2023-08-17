@@ -4,7 +4,7 @@ import { RootState } from '../GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, removeProduct, changeAmount} from '../GlobalRedux/features/cart/cartSlice';
 
-import ButtonsHeader from '@/components/cart/CartHeader/CartHeader';
+import CartHeader from '@/components/cart/CartHeader/CartHeader';
 import CartContent from '@/components/cart/Cart/Cart';
 
 import styles from './cart.module.css';
@@ -15,7 +15,7 @@ export default function Cart() {
 
   return (
     <div className={styles.container}>
-      <ButtonsHeader backLink={'/products'}/>
+      <CartHeader backLink={'/products'}/>
       <h1>My Cart</h1>
       <CartContent products={products} />
     </div>
