@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import styles from './navbar.module.css';
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const [showLinks, setShowLinks] = useState(false);
 
   const toggleLinks = () => {
@@ -22,10 +24,18 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div className={`${styles.links} ${showLinks ? styles['show-links'] : ''}`}>
-        <Link href='/'>Home</Link>
-        <Link href='/products'>Products</Link>
-        <Link href='/cart'>Cart</Link>
-        <Link href='/login'>Login</Link>
+        <Link href='/' className={pathname === '/' ? styles.active : ''}>
+          Home
+        </Link>
+        <Link href='/products' className={pathname.startsWith('/products') ? styles.active : ''}>
+          Products
+        </Link>
+        <Link href='/cart' className={pathname === '/cart' ? styles.active : ''}>
+          Cart
+        </Link>
+        <Link href='/login' className={pathname === '/login' ? styles.active : ''}>
+          Login
+        </Link>
       </div>
       <div className={styles.hamburger} onClick={toggleLinks}>
         &#9776;
