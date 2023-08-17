@@ -324,3 +324,7 @@ li {
   text-overflow: ellipsis; /* Truncate the text with ellipsis */
   white-space: nowrap; /* Prevent the text from wrapping */
 }
+
+.card a {
+  font-weight: 700;
+}
