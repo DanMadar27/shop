@@ -156,13 +156,15 @@ export default function Home() {
       <div className={styles.catalog}>
         <ImageSlider images={catalogImages}/>
       </div>
-      <button onClick={openWishlist}>Open Wishlist</button>
+      <div className={styles['modal-buttons']}>
+        <button onClick={openWishlist}>Open Wishlist</button>
+        <button onClick={openCartModal}>Open Cart</button>
+      </div>
       <Wishlist
         isOpen={isWishlistOpen} 
         onClose={closeWishlist} 
         products={products.filter(p => p.isFavorite)}
       />
-      <button onClick={openCartModal}>Open Cart</button>
       <CartModal
         isOpen={isCartModalOpen} 
         onClose={closeCartModal} 

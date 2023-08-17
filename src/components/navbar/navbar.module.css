@@ -40,7 +40,7 @@
 }
 
 /* Media query for mobile */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .links {
     display: none; /* Hide links on mobile */
     flex-direction: column;

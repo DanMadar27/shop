@@ -17,3 +17,18 @@
   width: 100%;
   padding: 1rem 2rem;
 }
+
+.modal-buttons {
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+}
