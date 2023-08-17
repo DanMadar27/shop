@@ -4,7 +4,7 @@
   --primary: 74, 85, 162;
   --secondary: 120, 149, 203;
   --tertiary: 0, 0, 0;
-  --button-text: 230, 230, 230;
+  --text: 230, 230, 230;
   --error: 238, 75, 43;
 }
 
@@ -168,7 +168,7 @@ p {
   padding: 1rem;
 
   background-color: rgb(var(--primary));
-  color: rgb(var(--button-text));
+  color: rgb(var(--text));
   border-radius: 0.5rem;
 
   text-align: center;
@@ -192,7 +192,7 @@ button {
   border: 0;
 
   background: rgb(var(--primary));
-  color: rgb(var(--button-text));
+  color: rgb(var(--text));
 
   cursor: pointer;
 }
@@ -207,7 +207,7 @@ button:disabled {
 }
 
 button > a {
-  color: rgb(var(--button-text));
+  color: rgb(var(--text));
   text-decoration: none;
 }
 
@@ -272,7 +272,7 @@ input[type="submit"] {
   margin-top: 1rem;
   padding: 10px;
   background-color: rgb(var(--primary));
-  color: rgb(var(--button-text));
+  color: rgb(var(--text));
   border: none;
   border-radius: 3px;
   cursor: pointer;
