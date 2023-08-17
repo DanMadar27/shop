@@ -33,9 +33,10 @@
   .links {
     display: none; /* Hide links on mobile */
     flex-direction: column;
+    padding: 1rem;
     background-color: rgb(var(--primary));;
     position: absolute;
-    top: 70px;
+    top: 85px;
     left: 0;
     width: 100%;
   }
