@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 
@@ -15,6 +15,10 @@ const Navbar: React.FC = () => {
     setShowLinks(!showLinks);
   };
 
+  useEffect(() => {
+    setShowLinks(false);
+  }, [pathname]);
+  
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
