@@ -38,12 +38,14 @@ const Navbar: React.FC = () => {
   return (
     <nav ref={navbarRef} className={styles.navbar}>
       <div className={styles.logo}>
-        <img
-          src='/next.svg'
-          alt='Shop Logo'
-          width={150}
-          height={50}
-        />
+        <Link href='/'>
+          <img
+            src='/next.svg'
+            alt='Shop Logo'
+            width={150}
+            height={50}
+          />
+        </Link>
       </div>
       <div className={`${styles.links} ${showLinks ? styles['show-links'] : ''}`}>
         <Link href='/' className={pathname === '/' ? styles.active : ''}>
