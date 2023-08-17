@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 
@@ -11,16 +11,32 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [showLinks, setShowLinks] = useState(false);
 
+  const navbarRef = useRef<HTMLDivElement>(null);
+
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+      setShowLinks(false);
+    }
+  };
+  
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     setShowLinks(false);
   }, [pathname]);
   
   return (
-    <nav className={styles.navbar}>
+    <nav ref={navbarRef} className={styles.navbar}>
       <div className={styles.logo}>
         <img
           src='/next.svg'
