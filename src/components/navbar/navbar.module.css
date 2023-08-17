@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(var(--primary));
+  color: rgb(var(--foreground-rgb));
+}
+
+.logo {
+  padding: 0.5rem;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hamburger menu */
+.hamburger {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Hide by default on desktop */
+}
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+  .links {
+    display: none; /* Hide links on mobile */
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger on mobile */
+  }
+
+  /* Show links when hamburger is clicked */
+  .links.show-links {
+    display: flex;
+  }
+}

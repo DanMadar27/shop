@@ -1,5 +1,5 @@
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 30, 30, 30;
   --background-rgb: 230, 230, 230;
   --primary: 74, 85, 162;
   --secondary: 120, 149, 203;
@@ -21,18 +21,6 @@ body {
 }
 
 /* Layout Styles */
-.header {
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 4rem;
-}
-
-.header > img {
-  margin: 0;
-}
-
 .container {
   min-width: 200px;
   max-width: 1200px;
