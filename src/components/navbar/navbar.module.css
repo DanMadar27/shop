@@ -20,6 +20,10 @@
 }
 
 .links a {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  gap: 0.5rem;
   color: rgb(var(--text));
   text-decoration: none;
 }
