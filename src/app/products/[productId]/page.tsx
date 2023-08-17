@@ -9,6 +9,7 @@ import { addProduct } from '@/app/GlobalRedux/features/cart/cartSlice';
 import Product from '@/models/Product';
 import { initialProduct } from '@/models/Product';
 
+import BackLink from '@/components/inputs/IconLinks/BackLink';
 import ProductContent from '@/components/products/ProductContent';
 import AddProductButton from '@/components/inputs/Products/AddProductButton';
 import LikeButton from '@/components/inputs/IconButtons/LikeButton';
@@ -48,7 +49,10 @@ export default function ProductDetails({ params }: { params: { productId: string
 
   return (
     <div className={styles.container}>
-      <ProductContent product={product} />
+      <div>
+        <BackLink link={'/products'} />
+        <ProductContent product={product} />
+      </div>
       <div className='flex-column-between'>
         <button onClick={buyNow}>
           Buy Now
