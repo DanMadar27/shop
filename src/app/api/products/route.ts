@@ -10,7 +10,6 @@ type ProductsQuery = {
 };
 
 function validateRequest(skip: string, take: string, search: string) {
-  // In the future also validate search param
   if (isNaN(parseInt(skip)) || isNaN(parseInt(take))) {
     return false;
   }
