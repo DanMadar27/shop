@@ -28,6 +28,15 @@ async function validateRequest(request: Request) {
       console.error('One or more products are invalid or do not exist');
       return null;
     }
+    
+    for (let i = 0; i < productsInput.length; i++) {
+      if (!productsInput[i].quantity || productsInput[i].quantity < 1) {
+        console.error('One or more products have invalid quantity');
+        return null;
+      }
+
+      productsInput[i].quantity = Math.floor(productsInput[i].quantity);
+    }
 
     const productsWithPrice = products.map((product: Product) => {
       const quantity = productsInput.find(
