@@ -72,7 +72,7 @@ export async function POST(request: Request) {
 
   try {
     // Use transaction to ensure that order and order products are created together
-    return await prisma.$transaction(async (transactionPrisma) => {
+    const order = await prisma.$transaction(async (transactionPrisma) => {
         const totalAmount = products.reduce((sum, product) => sum + product.price, 0);
         
         const order = await transactionPrisma.order.create({
@@ -97,8 +97,10 @@ export async function POST(request: Request) {
       
         console.log('Order created : ', order.id);
         
-        return NextResponse.json({ order });
-    }); 
+        return order;
+    });
+
+    return NextResponse.json({ order });
   }
   catch (error) {
     console.error('Error creating order : ', error);
