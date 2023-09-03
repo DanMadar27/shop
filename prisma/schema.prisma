@@ -36,7 +36,7 @@ model Order {
   id                Int         @id @default(autoincrement())
   user_id           Int
   total_amount      Float
-  status            String
+  status            Status      @default(PENDING)
   created_at        DateTime    @default(now())
   user              User        @relation(fields: [user_id], references: [id])
   order_products    OrderProduct[]
@@ -56,4 +56,9 @@ model OrderProduct {
 enum Role {
   USER
   ADMIN
+}
+
+enum Status {
+  PENDING
+  COMPLETED
 }
