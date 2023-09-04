@@ -60,7 +60,7 @@ const images = [
   '/vercel.svg',
 ];
 
-const mockProducts: { name: string; description: string; price: number, image: string }[] = [];
+const mockProducts: { name: string, description: string; price: number, image: string }[] = [];
 
 for (let i = 0; i < names.length; i++) {
   const price = getRandomPrice(0, 500);
