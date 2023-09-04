@@ -1,0 +1,47 @@
+import Product from '@/models/Product';
+
+function headers() {
+  return {
+    'Content-Type': 'application/json',
+  };
+}
+
+export async function getProducts(skip = 0, take = 10, search = ''): Promise<Product[]> {
+  const url = `/api/products?skip=${skip}&take=${take}` + (search ? `&search=${search}` : '');
+  const response = await fetch(url, { headers: headers() });
+  
+  if (!response.ok) {
+    throw new Error(
+      `Get Products: { status: ${response.status}, message: ${response.statusText} }`
+    );
+  }
+
+  const products: Product[] = await response.json();
+  return products;
+}
+
+export async function getProduct(productId: string): Promise<Product> {
+  const url = `/api/products/${productId}`;
+  const response = await fetch(url, { headers: headers() });
+
+  if (!response.ok) {
+    throw new Error(`Get Product: { status: ${response.status}, message: ${response.statusText} }`);
+  }
+
+  const product: Product = await response.json();
+  return product;
+}
+
+export async function checkout(products: { id: number, quantity: number }[]) {
+  const response = await fetch('/api/checkout', {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify(products),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Checkout: { status: ${response.status}, message: ${response.statusText} }`);
+  }
+
+  return response.json();
+}

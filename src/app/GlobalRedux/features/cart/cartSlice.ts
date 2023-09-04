@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
       const product = action.payload;
       
       if (!state.value.find( (p) => p.id === product.id)) {
-        state.value = [...state.value, {...product, amount: 1}];
+        state.value = [...state.value, {...product, quantity: 1}];
       }
     },
     removeProduct: (state: cartState, action: any): void => {
@@ -30,21 +30,24 @@ export const cartSlice = createSlice({
       }
       );
     },
-    changeAmount: (state: cartState, action: any): void => {
-      const { product, amount } = action.payload;
+    changeQuantity: (state: cartState, action: any): void => {
+      const { product, quantity } = action.payload;
 
       state.value = state.value.map( (p) => {
         if (p.id === product.id) {
-          p.amount = amount;
+          p.quantity = quantity;
           return p;
         }
 
         return p;
       });
+    },
+    emptyCart: (state: cartState): void => {
+      state.value = [];
     }
   }
 })
 
-export const { addProduct, removeProduct, changeAmount } = cartSlice.actions;
+export const { addProduct, removeProduct, changeQuantity, emptyCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import AddressButton from '../../inputs/IconButtons/AddressButton';

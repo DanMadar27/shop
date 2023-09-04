@@ -24,7 +24,13 @@ export async function GET(request: Request, { params }: { params: { productId: s
       return NextResponse.json({ error: 'Not found' }, { status: 404 })
     }
 
-    return NextResponse.json({ product })
+    const response = {
+      ...product,
+      isFavorite: false,
+      quantity: 0
+    };
+    
+    return NextResponse.json(response);
   }
   catch (error) {
     console.error('Error fetching product', error);

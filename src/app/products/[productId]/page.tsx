@@ -17,17 +17,7 @@ import LikeButton from '@/components/inputs/IconButtons/LikeButton';
 import styles from './product.module.css';
 import 'material-icons/iconfont/filled.css';
 
-async function getProduct(productId: string): Promise<Product> {
-  return {
-    id: productId,
-    name: 'Product Name',
-    description: 'Product Description.',
-    price: 9.99,
-    isFavorite: false,
-    amount: 0,
-    image: '/vercel.svg'
-  };
-}
+import { getProduct } from '@/utils/api';
 
 export default function ProductDetails({ params }: { params: { productId: string } }) {
   const { productId } = params;
@@ -38,7 +28,9 @@ export default function ProductDetails({ params }: { params: { productId: string
   const router = useRouter();
 
   useEffect(() => {
-    getProduct(productId).then((product) => setProduct(product));
+    getProduct(productId)
+      .then((product) => setProduct(product))
+      .catch((error) => console.error(error));
   }, [productId]);
 
   const buyNow = () => {

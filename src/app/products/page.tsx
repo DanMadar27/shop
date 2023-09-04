@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '../GlobalRedux/features/products/productSlice';
 
 import { useState, useEffect } from 'react';
-import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
 import SearchBar from '../../components/inputs/SearchBar/SearchBar';
@@ -14,95 +13,23 @@ import Wishlist from '../../components/modals/Wishlist';
 
 import styles from './products.module.css';
 
-import Product from '../../models/Product';
 import CartModal from '@/components/modals/CartModal';
+
+import { getProducts } from '@/utils/api';
+import { validateSearch } from '@/utils/validation';
+
+const take = 10;
 
 const catalogImages = [
   '/next.svg',
   '/vercel.svg',
 ]
 
-async function getProducts(): Promise<Product[]> {
-  // return mock data. In the future, this will be an API call and use SWR
-  return [
-    {
-      id: '1',
-      name: 'Product 1',
-      description: 'Product 1 description. more mock description',
-      price: 100,
-      isFavorite: false,
-      amount: 3,
-      image: '/vercel.svg'
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-      description: 'Product 2 description',
-      price: 150,
-      isFavorite: false,
-      amount: 2,
-      image: '/vercel.svg'
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-      description: 'Product 3 description',
-      price: 200,
-      isFavorite: true,
-      amount: 1,
-      image: '/vercel.svg'
-    },
-    {
-      id: '4',
-      name: 'Product 4',
-      description: 'Product 4 description',
-      price: 100,
-      isFavorite: true,
-      amount: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: '5',
-      name: 'Product 5',
-      description: 'Product 5 description',
-      price: 100,
-      isFavorite: true,
-      amount: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: '6',
-      name: 'Product 6',
-      description: 'Product 6 description',
-      price: 100,
-      isFavorite: false,
-      amount: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: '7',
-      name: 'Product 7',
-      description: 'Product 7 description',
-      price: 100,
-      isFavorite: false,
-      amount: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: '8',
-      name: 'Product 8',
-      description: 'Product 8 description',
-      price: 100,
-      isFavorite: false,
-      amount: 0,
-      image: '/vercel.svg'
-    },
-  ]
-}
-
 export default function Home() {
-  const { data, error } = useSWR<Product[]>('/api/products', getProducts);
   const products = useSelector((state: RootState) => state.products.value);
+  const [skip, setSkip] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [eod, setEod] = useState(false); // end of data
 
   const dispatch = useDispatch();
 
@@ -110,15 +37,34 @@ export default function Home() {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   useEffect(() => {
-    if (data) {
-      // @ts-ignore. This is a redux action
-      dispatch(setProducts(data));
-    }
+    setLoading(true);
+
+    getProducts().then((products) => {
+      // @ts-ignore
+      dispatch(setProducts(products));
+      setSkip(skip + take);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error(error);
+      // @ts-ignore
+      dispatch(setProducts([]));
+      setLoading(false);
+    });
+
     return () => {
-      // @ts-ignore. This is a redux action
+      // @ts-ignore
       dispatch(setProducts([]));
     }
-  }, [data]);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [skip, loading, eod]);
 
   // Start Modals //
   const openWishlist = () => {
@@ -139,17 +85,63 @@ export default function Home() {
   // End Modals //
 
   const handleSearch = (query: string) => {
-    // This will be API call in the future
-    //  so add regex for security in security task
-    const filteredProducts = products.filter(
-      p => p.name.toLowerCase().includes(query.toLowerCase())
-    );
+    if (!validateSearch(query)) {
+      console.error('Invalid search query');
+      return;
+    }
 
-    // @ts-ignore
-    dispatch(setProducts(filteredProducts));
+    setLoading(true);
+
+    getProducts(0, 10, query).then((products) => {
+      // @ts-ignore
+      dispatch(setProducts(products));
+      setSkip(0 + take);
+      setEod(false);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error(error);
+      setLoading(false);
+    });
   }
 
-  if (!data) return <div></div>;
+  const handleScroll = () => {
+    let debounceTimer;
+
+    if (loading || eod) {
+      return;
+    }
+
+    // Calculate the position 50 pixels above the bottom
+    const positionToTrigger = document.documentElement.scrollHeight - 50;
+
+    // Check if the user has reached the position
+    if (window.innerHeight + window.scrollY >= positionToTrigger) {
+      setLoading(true);
+
+      // Clear the previous debounce timer
+      clearTimeout(debounceTimer);
+
+      // Set a new debounce timer
+      debounceTimer = setTimeout(() => {
+        getProducts(skip).then((newProducts) => {
+          if (!newProducts.length) {
+            setEod(true);
+            setLoading(false);
+            return;
+          }
+          // @ts-ignore
+          dispatch(setProducts([...products, ...newProducts]));
+          setSkip(skip + take);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setLoading(false);
+        });
+      }, 500);
+    }
+  }
 
   return (
     <div className={styles.container}>

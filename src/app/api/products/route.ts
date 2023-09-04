@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import prisma from '../db/client';
 
+import { validateSearch } from '@/utils/validation';
+
 type ProductsQuery = {
   skip?: number;
   take?: number;
@@ -10,7 +12,7 @@ type ProductsQuery = {
 };
 
 function validateRequest(skip: string, take: string, search: string) {
-  if (isNaN(parseInt(skip)) || isNaN(parseInt(take))) {
+  if (isNaN(parseInt(skip)) || isNaN(parseInt(take)) || !validateSearch(search)) {
     return false;
   }
 
@@ -54,7 +56,13 @@ export async function GET(request: Request) {
   
   try {
     const products = await prisma.product.findMany(query);
-    return NextResponse.json({ products }) 
+    const response = products.map((product) => ({
+      ...product,
+      isFavorite: false,
+      quantity: 0,
+    }));
+
+    return NextResponse.json(response) 
   }
   catch (error) {
     console.error('Error fetching products', error);
