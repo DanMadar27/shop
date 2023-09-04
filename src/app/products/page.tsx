@@ -26,75 +26,75 @@ async function getProducts(): Promise<Product[]> {
   // return mock data. In the future, this will be an API call and use SWR
   return [
     {
-      id: '1',
+      id: 1,
       name: 'Product 1',
       description: 'Product 1 description. more mock description',
       price: 100,
       isFavorite: false,
-      amount: 3,
+      quantity: 3,
       image: '/vercel.svg'
     },
     {
-      id: '2',
+      id: 2,
       name: 'Product 2',
       description: 'Product 2 description',
       price: 150,
       isFavorite: false,
-      amount: 2,
+      quantity: 2,
       image: '/vercel.svg'
     },
     {
-      id: '3',
+      id: 3,
       name: 'Product 3',
       description: 'Product 3 description',
       price: 200,
       isFavorite: true,
-      amount: 1,
+      quantity: 1,
       image: '/vercel.svg'
     },
     {
-      id: '4',
+      id: 4,
       name: 'Product 4',
       description: 'Product 4 description',
       price: 100,
       isFavorite: true,
-      amount: 0,
+      quantity: 0,
       image: '/vercel.svg'
     },
     {
-      id: '5',
+      id: 5,
       name: 'Product 5',
       description: 'Product 5 description',
       price: 100,
       isFavorite: true,
-      amount: 0,
+      quantity: 0,
       image: '/vercel.svg'
     },
     {
-      id: '6',
+      id: 6,
       name: 'Product 6',
       description: 'Product 6 description',
       price: 100,
       isFavorite: false,
-      amount: 0,
+      quantity: 0,
       image: '/vercel.svg'
     },
     {
-      id: '7',
+      id: 7,
       name: 'Product 7',
       description: 'Product 7 description',
       price: 100,
       isFavorite: false,
-      amount: 0,
+      quantity: 0,
       image: '/vercel.svg'
     },
     {
-      id: '8',
+      id: 8,
       name: 'Product 8',
       description: 'Product 8 description',
       price: 100,
       isFavorite: false,
-      amount: 0,
+      quantity: 0,
       image: '/vercel.svg'
     },
   ]

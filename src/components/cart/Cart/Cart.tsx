@@ -16,7 +16,7 @@ const CartContent: React.FC<Props> = ({ products }) => {
   useEffect(() => {
     if (products.length) {
       const totalPrice = products.reduce((acc, product) => {
-        return acc + (product.price * product.amount);
+        return acc + (product.price * product.quantity);
       }, 0);
 
       setTotalPrice(totalPrice);

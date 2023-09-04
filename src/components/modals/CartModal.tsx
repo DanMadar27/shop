@@ -1,10 +1,10 @@
 import { RootState } from '@/app/GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, removeProduct, changeAmount} from '@/app/GlobalRedux/features/cart/cartSlice';
+import { addProduct, removeProduct, changeQuantity} from '@/app/GlobalRedux/features/cart/cartSlice';
 
 import Modal from './Modal';
 import ProductContent from '../products/ProductContent';
-import ChangeProductAmount from '../inputs/Products/ChangeProductAmount';
+import ChangeProductQuantity from '../inputs/Products/ChangeProductQuantity';
 
 import Product from '@/models/Product';
 
@@ -26,7 +26,7 @@ const CartModal = (props: Props) => {
         {products.map((product) => (
           <li key={product.id}>
             <ProductContent product={product} />
-            <ChangeProductAmount product={product} />
+            <ChangeProductQuantity product={product} />
          </li>
         ))}
       </ul>

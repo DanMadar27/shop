@@ -1,19 +1,19 @@
 export default interface Product {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
   image: string;
   isFavorite: boolean;
-  amount: number;
+  quantity: number;
 }
 
 export const initialProduct: Product = {
-  id: '',
+  id: -1,
   name: '',
   description: '',
   price: 0,
   image: '',
   isFavorite: false,
-  amount: 0,
+  quantity: 0,
 };

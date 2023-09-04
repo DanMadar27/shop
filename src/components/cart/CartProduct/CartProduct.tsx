@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Product from '@/models/Product';
-import ChangeProductAmount from '@/components/inputs/Products/ChangeProductAmount';
+import ChangeProductQuantity from '@/components/inputs/Products/ChangeProductQuantity';
 import RemoveProductButton from '@/components/inputs/Products/RemoveProductButton';
 
 import styles from './CartProduct.module.css';
@@ -26,7 +26,7 @@ const CartProduct: React.FC<Props> = ({ product }) => {
         <p>${product.price}</p>
       </div>
       <div className='flex-row-between'>
-        <ChangeProductAmount product={product} />
+        <ChangeProductQuantity product={product} />
         <RemoveProductButton product={product} />
       </div>
     </li>

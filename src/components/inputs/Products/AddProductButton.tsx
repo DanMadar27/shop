@@ -14,7 +14,7 @@ const AddProductButton: React.FC<Props> = ({ product }) => {
 
   const addToCart = async () => {
     // @ts-ignore. This is a redux action
-    dispatch(setProduct({...product, amount: 1}));
+    dispatch(setProduct({...product, quantity: 1}));
 
     // @ts-ignore. This is a redux action
     dispatch(addProduct(product));

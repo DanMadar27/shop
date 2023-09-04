@@ -17,7 +17,7 @@ const ProductContent = (props: Props) => {
       <h3>{product.name}</h3>
       <p className='ellipsis'>{product.description}</p>
       <p><b>Price</b>: ${product.price}</p>
-      <p><b>Amount</b>: {product.amount}</p>
+      <p><b>Quantity</b>: {product.quantity}</p>
     </div>
   );
 };

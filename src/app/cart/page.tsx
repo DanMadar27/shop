@@ -2,7 +2,7 @@
 
 import { RootState } from '../GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, removeProduct, changeAmount} from '../GlobalRedux/features/cart/cartSlice';
+import { addProduct, removeProduct, changeQuantity} from '../GlobalRedux/features/cart/cartSlice';
 
 import CartHeader from '@/components/cart/CartHeader/CartHeader';
 import CartContent from '@/components/cart/Cart/Cart';
