@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '../GlobalRedux/features/products/productSlice';
 
 import { useState, useEffect } from 'react';
-import useSWR from 'swr';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
 import SearchBar from '../../components/inputs/SearchBar/SearchBar';
@@ -23,7 +22,7 @@ const catalogImages = [
 ]
 
 async function getProducts(): Promise<Product[]> {
-  // return mock data. In the future, this will be an API call and use SWR
+  // return mock data. In the future, this will be an API call
   return [
     {
       id: 1,
@@ -101,7 +100,6 @@ async function getProducts(): Promise<Product[]> {
 }
 
 export default function Home() {
-  const { data, error } = useSWR<Product[]>('/api/products', getProducts);
   const products = useSelector((state: RootState) => state.products.value);
 
   const dispatch = useDispatch();
@@ -110,15 +108,21 @@ export default function Home() {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   useEffect(() => {
-    if (data) {
-      // @ts-ignore. This is a redux action
-      dispatch(setProducts(data));
-    }
+    getProducts().then((products) => {
+      // @ts-ignore
+      dispatch(setProducts(products));
+    })
+    .catch((error) => {
+      console.error(error);
+      // @ts-ignore
+      dispatch(setProducts([]));
+    });
+
     return () => {
-      // @ts-ignore. This is a redux action
+      // @ts-ignore
       dispatch(setProducts([]));
     }
-  }, [data]);
+  }, []);
 
   // Start Modals //
   const openWishlist = () => {
@@ -148,8 +152,6 @@ export default function Home() {
     // @ts-ignore
     dispatch(setProducts(filteredProducts));
   }
-
-  if (!data) return <div></div>;
 
   return (
     <div className={styles.container}>
