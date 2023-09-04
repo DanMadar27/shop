@@ -18,15 +18,15 @@ import styles from './product.module.css';
 import 'material-icons/iconfont/filled.css';
 
 async function getProduct(productId: string): Promise<Product> {
-  return {
-    id: parseInt(productId),
-    name: 'Product Name',
-    description: 'Product Description.',
-    price: 9.99,
-    isFavorite: false,
-    quantity: 0,
-    image: '/vercel.svg'
-  };
+  try {
+    const response = await fetch(`/api/products/${productId}`);
+    const product: Product = await response.json();
+    return product;
+  }
+  catch (error) {
+    console.error(error);
+    return initialProduct;
+  }
 }
 
 export default function ProductDetails({ params }: { params: { productId: string } }) {
