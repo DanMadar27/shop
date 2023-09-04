@@ -16,6 +16,8 @@ import styles from './products.module.css';
 import Product from '../../models/Product';
 import CartModal from '@/components/modals/CartModal';
 
+import { validateSearch } from '@/utils/validation';
+
 const catalogImages = [
   '/next.svg',
   '/vercel.svg',
@@ -74,6 +76,11 @@ export default function Home() {
   // End Modals //
 
   const handleSearch = (query: string) => {
+    if (!validateSearch(query)) {
+      console.error('Invalid search query');
+      return;
+    }
+
     getProducts('0', '10', query).then((products) => {
       // @ts-ignore
       dispatch(setProducts(products));
