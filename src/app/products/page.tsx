@@ -21,82 +21,13 @@ const catalogImages = [
   '/vercel.svg',
 ]
 
-async function getProducts(): Promise<Product[]> {
-  // return mock data. In the future, this will be an API call
-  return [
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'Product 1 description. more mock description',
-      price: 100,
-      isFavorite: false,
-      quantity: 3,
-      image: '/vercel.svg'
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'Product 2 description',
-      price: 150,
-      isFavorite: false,
-      quantity: 2,
-      image: '/vercel.svg'
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      description: 'Product 3 description',
-      price: 200,
-      isFavorite: true,
-      quantity: 1,
-      image: '/vercel.svg'
-    },
-    {
-      id: 4,
-      name: 'Product 4',
-      description: 'Product 4 description',
-      price: 100,
-      isFavorite: true,
-      quantity: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: 5,
-      name: 'Product 5',
-      description: 'Product 5 description',
-      price: 100,
-      isFavorite: true,
-      quantity: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: 6,
-      name: 'Product 6',
-      description: 'Product 6 description',
-      price: 100,
-      isFavorite: false,
-      quantity: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: 7,
-      name: 'Product 7',
-      description: 'Product 7 description',
-      price: 100,
-      isFavorite: false,
-      quantity: 0,
-      image: '/vercel.svg'
-    },
-    {
-      id: 8,
-      name: 'Product 8',
-      description: 'Product 8 description',
-      price: 100,
-      isFavorite: false,
-      quantity: 0,
-      image: '/vercel.svg'
-    },
-  ]
+async function getProducts(skip = '0', take = '10', search = ''): Promise<Product[]> {
+  const url = `/api/products?skip=${skip}&take=${take}` + (search ? `&search=${search}` : '');
+
+  const response = await fetch(url);
+  const products = await response.json();
+
+  return products;
 }
 
 export default function Home() {
@@ -143,14 +74,13 @@ export default function Home() {
   // End Modals //
 
   const handleSearch = (query: string) => {
-    // This will be API call in the future
-    //  so add regex for security in security task
-    const filteredProducts = products.filter(
-      p => p.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    // @ts-ignore
-    dispatch(setProducts(filteredProducts));
+    getProducts('0', '10', query).then((products) => {
+      // @ts-ignore
+      dispatch(setProducts(products));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   return (

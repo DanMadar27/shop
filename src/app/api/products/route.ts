@@ -54,7 +54,13 @@ export async function GET(request: Request) {
   
   try {
     const products = await prisma.product.findMany(query);
-    return NextResponse.json({ products }) 
+    const response = products.map((product) => ({
+      ...product,
+      isFavorite: false,
+      quantity: 0,
+    }));
+
+    return NextResponse.json(response) 
   }
   catch (error) {
     console.error('Error fetching products', error);
