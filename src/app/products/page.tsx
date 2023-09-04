@@ -18,12 +18,14 @@ import CartModal from '@/components/modals/CartModal';
 
 import { validateSearch } from '@/utils/validation';
 
+const take = 10;
+
 const catalogImages = [
   '/next.svg',
   '/vercel.svg',
 ]
 
-async function getProducts(skip = '0', take = '10', search = ''): Promise<Product[]> {
+async function getProducts(skip = 0, take = 10, search = ''): Promise<Product[]> {
   const url = `/api/products?skip=${skip}&take=${take}` + (search ? `&search=${search}` : '');
 
   const response = await fetch(url);
@@ -34,6 +36,9 @@ async function getProducts(skip = '0', take = '10', search = ''): Promise<Produc
 
 export default function Home() {
   const products = useSelector((state: RootState) => state.products.value);
+  const [skip, setSkip] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [eod, setEod] = useState(false); // end of data
 
   const dispatch = useDispatch();
 
@@ -41,14 +46,19 @@ export default function Home() {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     getProducts().then((products) => {
       // @ts-ignore
       dispatch(setProducts(products));
+      setSkip(skip + take);
+      setLoading(false);
     })
     .catch((error) => {
       console.error(error);
       // @ts-ignore
       dispatch(setProducts([]));
+      setLoading(false);
     });
 
     return () => {
@@ -56,6 +66,14 @@ export default function Home() {
       dispatch(setProducts([]));
     }
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [skip, loading, eod]);
 
   // Start Modals //
   const openWishlist = () => {
@@ -81,13 +99,57 @@ export default function Home() {
       return;
     }
 
-    getProducts('0', '10', query).then((products) => {
+    setLoading(true);
+
+    getProducts(0, 10, query).then((products) => {
       // @ts-ignore
       dispatch(setProducts(products));
+      setSkip(0 + take);
+      setEod(false);
+      setLoading(false);
     })
     .catch((error) => {
       console.error(error);
+      setLoading(false);
     });
+  }
+
+  const handleScroll = () => {
+    let debounceTimer;
+
+    if (loading || eod) {
+      return;
+    }
+
+    // Calculate the position 50 pixels above the bottom
+    const positionToTrigger = document.documentElement.scrollHeight - 50;
+
+    // Check if the user has reached the position
+    if (window.innerHeight + window.scrollY >= positionToTrigger) {
+      setLoading(true);
+
+      // Clear the previous debounce timer
+      clearTimeout(debounceTimer);
+
+      // Set a new debounce timer
+      debounceTimer = setTimeout(() => {
+        getProducts(skip).then((newProducts) => {
+          if (!newProducts.length) {
+            setEod(true);
+            setLoading(false);
+            return;
+          }
+          // @ts-ignore
+          dispatch(setProducts([...products, ...newProducts]));
+          setSkip(skip + take);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setLoading(false);
+        });
+      }, 500);
+    }
   }
 
   return (
