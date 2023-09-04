@@ -13,9 +13,9 @@ import Wishlist from '../../components/modals/Wishlist';
 
 import styles from './products.module.css';
 
-import Product from '../../models/Product';
 import CartModal from '@/components/modals/CartModal';
 
+import { getProducts } from '@/utils/api';
 import { validateSearch } from '@/utils/validation';
 
 const take = 10;
@@ -24,15 +24,6 @@ const catalogImages = [
   '/next.svg',
   '/vercel.svg',
 ]
-
-async function getProducts(skip = 0, take = 10, search = ''): Promise<Product[]> {
-  const url = `/api/products?skip=${skip}&take=${take}` + (search ? `&search=${search}` : '');
-
-  const response = await fetch(url);
-  const products = await response.json();
-
-  return products;
-}
 
 export default function Home() {
   const products = useSelector((state: RootState) => state.products.value);
