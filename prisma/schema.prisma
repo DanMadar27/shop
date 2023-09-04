@@ -26,7 +26,7 @@ model Product {
   name              String
   description       String
   price             Float
-  image_url         String
+  image             String      @default("")
   created_at        DateTime    @default(now())
   updated_at        DateTime    @updatedAt
   order_products    OrderProduct[]
