@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]/route';
+
 import prisma from '../db/client';
 import { Product } from '@prisma/client';
 
@@ -63,6 +66,13 @@ async function validateRequest(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const session = await getServerSession(authOptions);
+  
+  if (!session) {
+    return NextResponse.json({ error: 'You are not logged in' }, { status: 401 });
+  }
+  
+  // TODO: Get user id from session using session.user.email
   const userId = 1; // mock user
   const products = await validateRequest(request);
 
