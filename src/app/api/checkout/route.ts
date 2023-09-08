@@ -68,12 +68,10 @@ async function validateRequest(request: Request) {
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   
-  if (!session) {
+  if (!session || typeof session.user?.email !== 'string') {
     return NextResponse.json({ error: 'You are not logged in' }, { status: 401 });
   }
   
-  // TODO: Get user id from session using session.user.email
-  const userId = 1; // mock user
   const products = await validateRequest(request);
 
   if (!products) {
@@ -81,13 +79,22 @@ export async function POST(request: Request) {
   }
 
   try {
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
+    });
+    
+    if (!user) {
+      console.error('Error fetching user');
+      return NextResponse.json({ error: 'Error creating order' }, { status: 500 });
+    }
+  
     // Use transaction to ensure that order and order products are created together
     const order = await prisma.$transaction(async (transactionPrisma) => {
         const totalAmount = products.reduce((sum, product) => sum + product.price, 0);
         
         const order = await transactionPrisma.order.create({
           data: {
-            user_id: userId,
+            user_id: user.id,
             total_amount: totalAmount,
           },
         });
