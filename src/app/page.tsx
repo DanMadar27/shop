@@ -8,7 +8,7 @@ export default function Hero() {
         <h1>Welcome To The Shop</h1>
         <p>Your place to buy products</p>
         <button>
-          <Link href='/register'>Join Today</Link>
+          <Link href='/login'>Login</Link>
         </button>
         <button>
           <Link href='/products'>See Products</Link>
