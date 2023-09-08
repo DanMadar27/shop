@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 
@@ -8,6 +9,8 @@ import styles from './navbar.module.css';
 import 'material-icons/iconfont/filled.css';
 
 const Navbar: React.FC = () => {
+  const { data: session } = useSession();
+
   const pathname = usePathname();
   const [showLinks, setShowLinks] = useState(false);
 
@@ -23,6 +26,20 @@ const Navbar: React.FC = () => {
     }
   };
   
+  const loginButton = () => {
+    return session ? (
+      <button onClick={() => signOut()}>
+        <span className='material-icons'>logout</span>
+        Logout
+      </button>
+    ): (
+      <button onClick={() => signIn()} className={pathname === '/login' ? styles.active : ''}>
+        <span className='material-icons'>login</span>
+        Login
+      </button>
+    );
+  }
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
 
@@ -60,10 +77,7 @@ const Navbar: React.FC = () => {
           <span className='material-icons'>shopping_cart</span>
           Cart
         </Link>
-        <Link href='/login' className={pathname === '/login' ? styles.active : ''}>
-          <span className='material-icons'>login</span>
-          Login
-        </Link>
+        { loginButton() }
       </div>
       <div 
         className={`${styles.hamburger} ${showLinks ? styles.open : ''}`}
