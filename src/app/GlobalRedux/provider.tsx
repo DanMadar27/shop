@@ -3,10 +3,14 @@
 import { Provider } from 'react-redux';
 import { store } from './store';
 
+import { SessionProvider } from 'next-auth/react';
+
 export function GlobalProvider({ children }: { children: any }) {
     return (
         <Provider store={store}>
-            {children}
+            <SessionProvider>
+                {children}
+            </SessionProvider>
         </Provider>
     )
 }

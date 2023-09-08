@@ -19,13 +19,17 @@
   gap: 20px;
 }
 
-.links a {
+.links > * {
   display: flex;
-  justify-self: start;
+  justify-self: flex-start;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.5rem;
   color: rgb(var(--text));
-  text-decoration: none;
+}
+
+.links > button > span {
+  margin: 0;
 }
 
 /* Hamburger menu */
