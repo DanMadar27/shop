@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google'
 
+import prisma from '../../db/client';
+
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -10,6 +12,38 @@ export const authOptions = {
   ],
   pages: {
     signIn: '/login'
+  },
+  callbacks: {
+    async signIn({ user }: { user: any }) {
+      try {
+        const email = user.email;
+
+        if (!email) {
+          throw new Error('No email for user');
+        }
+        
+        const userExists = await prisma.user.findUnique({
+          where: { email }
+        });
+
+        if (!userExists) {
+          const newUser = await prisma.user.create({
+              data: {
+                email,
+                ...(user.name && { name: user.name })
+              }
+          });
+
+          console.log(`Created user ${email}`);
+        }
+
+        return true;
+      }
+      catch (error) {
+        console.error(error);
+        return false;
+      }
+    },
   }
 };
 
