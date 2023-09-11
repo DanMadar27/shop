@@ -1,4 +1,7 @@
+'use client';
+
 import Product from '@/models/Product';
+import Order from '@/models/Order';
 
 function headers() {
   return {
@@ -30,6 +33,20 @@ export async function getProduct(productId: string): Promise<Product> {
 
   const product: Product = await response.json();
   return product;
+}
+
+export async function getOrders(skip = 0, take = 10): Promise<Order[]> {
+  const url = `/api/orders?skip=${skip}&take=${take}`;
+  const response = await fetch(url, { headers: headers() });
+  
+  if (!response.ok) {
+    throw new Error(
+      `Get Orders: { status: ${response.status}, message: ${response.statusText} }`
+    );
+  }
+
+  const orders: Order[] = await response.json();
+  return orders;
 }
 
 export async function checkout(products: { id: number, quantity: number }[]) {

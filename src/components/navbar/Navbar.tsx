@@ -77,6 +77,10 @@ const Navbar: React.FC = () => {
           <span className='material-icons'>shopping_cart</span>
           Cart
         </Link>
+        <Link href='/orders' className={pathname === '/orders' ? styles.active : ''}>
+          <span className='material-icons'>list_alt</span>
+          Orders
+        </Link>
         { loginButton() }
       </div>
       <div 

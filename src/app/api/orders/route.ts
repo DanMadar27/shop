@@ -54,7 +54,8 @@ export async function GET(request: Request) {
     };  
     
     const orders = await prisma.order.findMany(query);
-    const response = orders.map((order) => ({
+    const response = orders.map((order, index) => ({
+      index: index + parseInt(skip) + 1,
       ...order,
       link: `/orders/${order.id}`,
     }));
