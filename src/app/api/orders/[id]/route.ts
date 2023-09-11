@@ -53,7 +53,22 @@ export async function GET(request: Request, { params }: { params: { id: string }
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    return NextResponse.json(order);
+    // return in resopnse index of order based on user orders
+    const index = await prisma.order.count({
+      where: {
+        user_id: user.id,
+        created_at: {
+          lt: order.created_at
+        }
+      }
+    });
+
+    const resopnse = {
+      index: index + 1,
+      ...order,
+    }
+
+    return NextResponse.json(resopnse);
   }
   catch (error) {
     console.error('Error fetching order', error);
