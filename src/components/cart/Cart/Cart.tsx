@@ -26,7 +26,7 @@ const CartContent: React.FC = () => {
         return acc + (product.price * product.quantity);
       }, 0);
 
-      setTotalPrice(totalPrice);
+      setTotalPrice(parseFloat(totalPrice.toFixed(2)));
     }
     else {
       setTotalPrice(0);
