@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import useLoadOnScroll from '@/hooks/loadOnScroll';
 
 import Order from '../../models/Order';
 import { getOrders } from '@/utils/api';
@@ -17,19 +18,18 @@ export default function Orders() {
   });
 
   const [orders, setOrders] = useState<Order[]>([]);
-  
-  useEffect(() => {
-    getOrders(0, 10).then((orders) => {
-      setOrders(orders);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  
-    return () => {
-      setOrders([]);
-    }
-  }, [])
+
+  const { loading } = useLoadOnScroll({
+    data: orders,
+    setData: setOrders,
+    apiFunction: getOrders,
+    take: 30,
+    searchEnabled: false,
+  });
+
+  if (loading && !orders.length) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>

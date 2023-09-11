@@ -27,7 +27,7 @@ const catalogImages = [
 export default function Home() {
   const products = useSelector((state: RootState) => state.products.value);
 
-  const { handleSearch } = useLoadOnScroll({
+  const { loading, handleSearch } = useLoadOnScroll({
     data: products,
     setData: (products) => {
       // @ts-ignore
@@ -61,6 +61,10 @@ export default function Home() {
   }
   // End Modals //
 
+  if (loading && !products.length) {
+    return <div>Loading...</div>
+  }
+  
   return (
     <div className={styles.container}>
       <div className={styles.catalog}>

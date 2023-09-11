@@ -27,7 +27,7 @@ const OrderList: NextPage<Props> = (props) => {
               Order {order.index}
             </Link>
           </td>
-          <td>{order.total_amount}</td>
+          <td>{parseFloat(order.total_amount.toFixed(2))}</td>
           <td>{order.status}</td>
           <td>{new Date(order.created_at).toDateString()}</td>
         </tr>
