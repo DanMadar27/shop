@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
@@ -19,6 +20,8 @@ const CartContent: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   useEffect(() => {
     if (products.length) {
@@ -51,8 +54,7 @@ const CartContent: React.FC = () => {
 
       dispatch(emptyCart());
       setLoading(false);
-
-      // In the future redirect to the orders page
+      router.push('/orders');      
     }
     catch (error) {
       console.error(error);
