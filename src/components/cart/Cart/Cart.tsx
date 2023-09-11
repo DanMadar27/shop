@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
@@ -20,13 +21,15 @@ const CartContent: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  const router = useRouter();
+
   useEffect(() => {
     if (products.length) {
       const totalPrice = products.reduce((acc, product) => {
         return acc + (product.price * product.quantity);
       }, 0);
 
-      setTotalPrice(totalPrice);
+      setTotalPrice(parseFloat(totalPrice.toFixed(2)));
     }
     else {
       setTotalPrice(0);
@@ -51,8 +54,7 @@ const CartContent: React.FC = () => {
 
       dispatch(emptyCart());
       setLoading(false);
-
-      // In the future redirect to the orders page
+      router.push('/orders');      
     }
     catch (error) {
       console.error(error);

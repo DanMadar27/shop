@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '../GlobalRedux/features/products/productSlice';
 
 import { useState, useEffect } from 'react';
+import useLoadOnScroll from '@/hooks/loadOnScroll';
 
 import ImageSlider from '../../components/catalog/ImageSlider';
 import SearchBar from '../../components/inputs/SearchBar/SearchBar';
@@ -18,8 +19,6 @@ import CartModal from '@/components/modals/CartModal';
 import { getProducts } from '@/utils/api';
 import { validateSearch } from '@/utils/validation';
 
-const take = 10;
-
 const catalogImages = [
   '/next.svg',
   '/vercel.svg',
@@ -27,44 +26,22 @@ const catalogImages = [
 
 export default function Home() {
   const products = useSelector((state: RootState) => state.products.value);
-  const [skip, setSkip] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [eod, setEod] = useState(false); // end of data
+
+  const { loading, handleSearch } = useLoadOnScroll({
+    data: products,
+    setData: (products) => {
+      // @ts-ignore
+      dispatch(setProducts(products));
+    },
+    apiFunction: getProducts,
+    take: 10,
+    searchEnabled: true,
+  });
 
   const dispatch = useDispatch();
 
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-
-    getProducts().then((products) => {
-      // @ts-ignore
-      dispatch(setProducts(products));
-      setSkip(skip + take);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error(error);
-      // @ts-ignore
-      dispatch(setProducts([]));
-      setLoading(false);
-    });
-
-    return () => {
-      // @ts-ignore
-      dispatch(setProducts([]));
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, [skip, loading, eod]);
 
   // Start Modals //
   const openWishlist = () => {
@@ -84,65 +61,10 @@ export default function Home() {
   }
   // End Modals //
 
-  const handleSearch = (query: string) => {
-    if (!validateSearch(query)) {
-      console.error('Invalid search query');
-      return;
-    }
-
-    setLoading(true);
-
-    getProducts(0, 10, query).then((products) => {
-      // @ts-ignore
-      dispatch(setProducts(products));
-      setSkip(0 + take);
-      setEod(false);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error(error);
-      setLoading(false);
-    });
+  if (loading && !products.length) {
+    return <div>Loading...</div>
   }
-
-  const handleScroll = () => {
-    let debounceTimer;
-
-    if (loading || eod) {
-      return;
-    }
-
-    // Calculate the position 50 pixels above the bottom
-    const positionToTrigger = document.documentElement.scrollHeight - 50;
-
-    // Check if the user has reached the position
-    if (window.innerHeight + window.scrollY >= positionToTrigger) {
-      setLoading(true);
-
-      // Clear the previous debounce timer
-      clearTimeout(debounceTimer);
-
-      // Set a new debounce timer
-      debounceTimer = setTimeout(() => {
-        getProducts(skip).then((newProducts) => {
-          if (!newProducts.length) {
-            setEod(true);
-            setLoading(false);
-            return;
-          }
-          // @ts-ignore
-          dispatch(setProducts([...products, ...newProducts]));
-          setSkip(skip + take);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-      }, 500);
-    }
-  }
-
+  
   return (
     <div className={styles.container}>
       <div className={styles.catalog}>
