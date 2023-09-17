@@ -9,6 +9,9 @@ type OrdersQuery = {
   where: {
     user_id: number;
   },
+  orderBy?: {
+    created_at: 'desc';
+  },
 };
 
 function validateRequest(skip: string, take: string) {
@@ -51,11 +54,20 @@ export async function GET(request: Request) {
       where: {
         user_id: user.id,
       },
+      orderBy: {
+        created_at: 'desc',
+      },
     };  
     
     const orders = await prisma.order.findMany(query);
+    const totalUserOrders = await prisma.order.count({
+      where: {
+        user_id: user.id,
+      },
+    });
+
     const response = orders.map((order, index) => ({
-      index: index + parseInt(skip) + 1,
+      index: totalUserOrders - index - parseInt(skip),
       ...order,
       link: `/orders/${order.id}`,
     }));

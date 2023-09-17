@@ -20,18 +20,20 @@ const OrderList: NextPage<Props> = (props) => {
           <th>Date</th>
         </tr>
       </thead>
-      {orders.map((order) => (
-        <tr key={order.id}>
-          <td>
-            <Link href={`/orders/${order.id}`}>
-              Order {order.index}
-            </Link>
-          </td>
-          <td>{parseFloat(order.total_amount.toFixed(2))}</td>
-          <td>{order.status}</td>
-          <td>{new Date(order.created_at).toDateString()}</td>
-        </tr>
-      ))}
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.id}>
+            <td>
+              <Link href={`/orders/${order.id}`}>
+                Order {order.index}
+              </Link>
+            </td>
+            <td>{parseFloat(order.total_amount.toFixed(2))}</td>
+            <td>{order.status}</td>
+            <td>{new Date(order.created_at).toDateString()}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
