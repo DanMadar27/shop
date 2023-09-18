@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server'
 import prisma from '../../db/client';
-
-function validateRequest(productId: string) {
-  return !isNaN(parseInt(productId));
-}
+import { validateSlug } from '../../validation/requests';
 
 export async function GET(request: Request, { params }: { params: { productId: string } }) {
   const productId = params.productId;
 
-  if (!validateRequest(productId)) {
+  if (!validateSlug(productId)) {
     return NextResponse.json({ error: 'Bad request' }, { status: 400 });
   }
 

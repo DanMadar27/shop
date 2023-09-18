@@ -3,9 +3,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../auth/[...nextauth]/route';
 import prisma from '../../db/client';
 
-function validateRequest(id: string) {
-  return !isNaN(parseInt(id));
-}
+import { validateSlug } from '../../validation/requests';
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -16,7 +14,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   const id = params.id;
 
-  if (!validateRequest(id)) {
+  if (!validateSlug(id)) {
     return NextResponse.json({ error: 'Bad request' }, { status: 400 });
   }
 

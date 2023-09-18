@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '../db/client';
 
-import { validateSearch } from '@/utils/validation';
+import { validateGetManyRequest } from '../validation/requests';
 
 type ProductsQuery = {
   skip?: number;
@@ -11,14 +11,6 @@ type ProductsQuery = {
   };
 };
 
-function validateRequest(skip: string, take: string, search: string) {
-  if (isNaN(parseInt(skip)) || isNaN(parseInt(take)) || !validateSearch(search)) {
-    return false;
-  }
-
-  return true;
-}
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
@@ -26,7 +18,7 @@ export async function GET(request: Request) {
   const take = searchParams.get('take') || '10';
   const search = searchParams.get('search') || '';
 
-  if (!validateRequest(skip, take, search)) {
+  if (!validateGetManyRequest(skip, take, search)) {
     return NextResponse.json({ error: 'Bad request' }, { status: 400 });
   }
 
