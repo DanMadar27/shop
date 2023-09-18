@@ -10,7 +10,7 @@ export async function validateCheckoutRequest(request: Request) {
   try {
     const productsInput: ProductInput[] = await request.json();
 
-    if (!productsInput || !Array.isArray(productsInput)) {
+    if (!productsInput || !Array.isArray(productsInput) || !productsInput.length) {
       console.error('Invalid products input');
       return null;
     }

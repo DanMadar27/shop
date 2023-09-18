@@ -69,7 +69,7 @@ const CartContent: React.FC = () => {
       <div className={styles.checkout}>
         <p>Total: <b>${totalPrice}</b></p>
         <p>Delivery: <b>Free</b></p>
-        <button disabled={loading} onClick={handleCheckout}>
+        <button disabled={loading || !products.length} onClick={handleCheckout}>
           Checkout
         </button>
       </div>
