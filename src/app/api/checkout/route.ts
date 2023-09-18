@@ -5,11 +5,6 @@ import { authOptions } from '../auth/[...nextauth]/route';
 import prisma from '../db/client';
 import { validateCheckoutRequest } from '../validation/orders';
 
-type ProductInput = {
-  id: number;
-  quantity: number;
-};
-
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   
@@ -57,7 +52,7 @@ export async function POST(request: Request) {
           data: orderProductsData,
         });
       
-        console.log('Order created : ', order.id);
+        console.log(`Order ${order.id} created for user ${user.email}`);
         
         return order;
     });

@@ -36,6 +36,9 @@ export const authOptions = {
 
           console.log(`Created user ${email}`);
         }
+        else {
+          console.log(`User ${email} logged in`);
+        }
 
         return true;
       }
