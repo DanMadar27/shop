@@ -1,13 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import rateLimiter, { requestLimit } from '@/utils/rateLimit';
+import rateLimiter from '@/utils/rateLimit';
 import { validateSearch } from '@/utils/validation';
-
-function setResponseHeaders(response: NextResponse, remainingRequests: number) {
-  response.headers.set('x-ratelimit-limit', requestLimit.toString());
-  response.headers.set('x-ratelimit-remaining', remainingRequests.toString());
-
-  return response;
-}
 
 async function getParams(request: NextRequest) {
   switch (request.method) {
@@ -40,8 +33,7 @@ export async function validateRequest(request: NextRequest) {
       { error: 'Rate limit exceeded' }, { status: 429 }
     );
 
-    response = setResponseHeaders(response, remainingRequests);
-    return response;
+    return { response, remainingRequests}
   }
 
   if (await isMaliciousRequest(request)) {
@@ -50,13 +42,11 @@ export async function validateRequest(request: NextRequest) {
       { error: 'Bad request' }, { status: 400 }
     );
 
-    response = setResponseHeaders(response, remainingRequests);
-    return response;
+    return { response, remainingRequests}
   }
 
   response = NextResponse.next();
-  response = setResponseHeaders(response, remainingRequests);
-  return response;
+  return { response, remainingRequests}
 }
 
 export function validateSlug(slug: string) {
