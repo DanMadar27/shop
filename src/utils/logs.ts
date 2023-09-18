@@ -1,6 +1,10 @@
 import { type NextRequest } from 'next/server';
 
-export async function logRequest(request: NextRequest) {  
+export async function logRequest(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith('/_next/')) {
+    return;
+  }
+  
   const str = `-----------------------------------------\n` +
     `Incoming Request ${new Date().toISOString()}\n` +
     `${request.method} ${request.nextUrl.pathname}\n` +
