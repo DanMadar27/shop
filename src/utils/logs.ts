@@ -8,3 +8,11 @@ export async function logRequest(request: NextRequest) {
   
   console.log(str);
 }
+
+export function removeLogs() {
+  console.log = () => {};
+  console.debug = () => {};
+  console.info = () => {};
+  console.warn = () => {};
+  console.error = () => {};
+}

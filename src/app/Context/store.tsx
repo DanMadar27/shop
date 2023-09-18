@@ -11,7 +11,7 @@ interface ContextProps {
 const GlobalContext = createContext<ContextProps>({
 })
 
-export const GlobalContextProvider = ({ children }) => {
+export const GlobalContextProvider = ({ children }: { children: any }) => {
     return (
         <GlobalContext.Provider
           value={{

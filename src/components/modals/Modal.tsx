@@ -10,9 +10,6 @@ interface Props {
 
 const Modal = (props: Props) => {
   const { isOpen, onClose, children } = props;
-  
-  if (!isOpen) return null;
-
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   // If the user clicks outside of the modal or presses the escape key, close the modal
@@ -39,6 +36,8 @@ const Modal = (props: Props) => {
       document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
 
   return (
     <div className={styles.modal}>
