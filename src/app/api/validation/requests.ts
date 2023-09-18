@@ -1,5 +1,13 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import rateLimiter, { requestLimit } from '@/utils/rateLimit';
 import { validateSearch } from '@/utils/validation';
+
+function setResponseHeaders(response: NextResponse, remainingRequests: number) {
+  response.headers.set('x-ratelimit-limit', requestLimit.toString());
+  response.headers.set('x-ratelimit-remaining', remainingRequests.toString());
+
+  return response;
+}
 
 async function getParams(request: NextRequest) {
   switch (request.method) {
@@ -22,16 +30,33 @@ async function isMaliciousRequest(request: NextRequest) {
 }
 
 export async function validateRequest(request: NextRequest) {
-  if (await isMaliciousRequest(request)) {
-    console.error('Malicious request');
+  let response;
 
-    return NextResponse.json(
-      { error: 'Bad request' }, { status: 400 }
+  const remainingRequests = rateLimiter.remainingRequests(request);
+
+  if (!remainingRequests) {
+    console.error('Rate limit exceeded');
+    response = NextResponse.json(
+      { error: 'Rate limit exceeded' }, { status: 429 }
     );
+
+    response = setResponseHeaders(response, remainingRequests);
+    return response;
   }
 
-  // Can add rate limiting here
-  return NextResponse.next();
+  if (await isMaliciousRequest(request)) {
+    console.error('Malicious request');
+    response = NextResponse.json(
+      { error: 'Bad request' }, { status: 400 }
+    );
+
+    response = setResponseHeaders(response, remainingRequests);
+    return response;
+  }
+
+  response = NextResponse.next();
+  response = setResponseHeaders(response, remainingRequests);
+  return response;
 }
 
 export function validateSlug(slug: string) {
