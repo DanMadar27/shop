@@ -16,6 +16,10 @@ async function getParams(request: NextRequest) {
 }
 
 async function isMaliciousRequest(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith('/api/auth')) {
+    return false;
+  }
+
   const params = JSON.stringify(await getParams(request));
   const sqlInjectionPattern = /SELECT|INSERT|UPDATE|DELETE|DROP|UNION|OR\s+1\s*=\s*1/i;
 
