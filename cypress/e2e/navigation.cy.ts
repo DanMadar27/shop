@@ -1,4 +1,14 @@
+import { login, logout } from '../utils/auth';
+
 describe('Pages', () => {
+  beforeEach(() => {
+    login();
+  });
+  
+  after(() => {
+    logout();
+  });
+
   it('home', () => {
     cy.visit('/');
     cy.get('h1').should('contain', 'Welcome To The Shop');
@@ -59,6 +69,14 @@ describe('Products', () => {
 });
 
 describe('Orders', () => {
+  beforeEach(() => {
+    login();
+  });
+  
+  after(() => {
+    logout();
+  });
+  
   it('Navigate to cart', () => {
     cy.visit('/');
     cy.get('nav a').contains('Cart').click();
