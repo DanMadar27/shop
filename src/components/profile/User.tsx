@@ -13,7 +13,7 @@ const User: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h3>{ name }</h3>
+      <p>{ name }</p>
       { email && (
         <p> { session.user?.email }</p>
       )}
