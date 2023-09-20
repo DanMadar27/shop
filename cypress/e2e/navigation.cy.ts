@@ -40,6 +40,14 @@ describe('Pages', () => {
   });
 });
 
+describe('Home', () => {
+  it('Navigate to home', () => {
+    cy.visit('/login');
+    cy.get('nav a').contains('Home').click();
+    cy.url().should('include', '/');
+  });
+});
+
 describe('Login', () => {
   it('Navigate with home login button', () => {
     cy.visit('/');
