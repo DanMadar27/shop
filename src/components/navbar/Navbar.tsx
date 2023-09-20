@@ -5,6 +5,8 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 
+import User from '../profile/User';
+
 import styles from './navbar.module.css';
 import 'material-icons/iconfont/filled.css';
 
@@ -64,6 +66,7 @@ const Navbar: React.FC = () => {
           />
         </Link>
       </div>
+      <User />
       <div className={`${styles.links} ${showLinks ? styles['show-links'] : ''}`}>
         <Link href='/' className={pathname === '/' ? styles.active : ''}>
           <span className='material-icons'>home</span>
