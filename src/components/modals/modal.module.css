@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.modal p {
+  text-wrap: wrap;
+}
+
 .content {
   display: flex;
   flex-direction: column;
