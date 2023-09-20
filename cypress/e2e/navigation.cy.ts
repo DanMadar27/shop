@@ -63,7 +63,13 @@ describe('Login', () => {
 });
 
 describe('Products', () => {
-  it('Navigate to products', () => {
+  it('Navigate to products with home button', () => {
+    cy.visit('/');
+    cy.get('button').contains('See Products').click();
+    cy.url().should('include', '/products');
+  });
+
+  it('Navigate to products with navbar', () => {
     cy.visit('/');
     cy.get('nav a').contains('Products').click();
     cy.url().should('include', '/products');
