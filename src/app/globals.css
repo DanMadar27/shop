@@ -157,6 +157,12 @@ p {
   margin-top: 0.5rem;
 }
 
+h1, h2, h3, p, a, button, input, label {
+  font: Arial;
+  line-height: 170%;
+  letter-spacing: 1px;
+}
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
