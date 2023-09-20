@@ -1,6 +1,8 @@
 'use client';
 
 import { useDispatch } from 'react-redux';
+import { addProduct } from '@/app/GlobalRedux/features/cart/cartSlice';
+import { setProduct } from '@/app/GlobalRedux/features/products/productSlice';
 
 import Modal from './Modal';
 import ProductContent from '../products/ProductContent';
@@ -22,6 +24,16 @@ const Wishlist = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const addAllToCart = () => {
+    products.forEach((product) => {
+      // @ts-ignore. This is a redux action
+      dispatch(setProduct({...product, quantity: 1}));
+
+      // @ts-ignore. This is a redux action
+      dispatch(addProduct(product));
+    });
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <h2>Wishlist</h2>
@@ -36,6 +48,9 @@ const Wishlist = (props: Props) => {
          </li>
         ))}
       </ul>
+      <button className={styles['add-all']} onClick={addAllToCart}>
+        Add all to cart
+      </button>
     </Modal>
   );
 };
