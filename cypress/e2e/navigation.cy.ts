@@ -44,7 +44,7 @@ describe('Home', () => {
   it('Navigate to home', () => {
     cy.visit('/login');
     cy.get('nav a').contains('Home').click();
-    cy.url().should('include', '/');
+    cy.url().should('include', '/').should('not.contain', '/login');
   });
 });
 
@@ -101,5 +101,25 @@ describe('Orders', () => {
     cy.visit('/orders');
     cy.get('a').contains('Order 1').click();
     cy.url().should('include', '/orders/1');
+  });
+});
+
+describe('Footer', () => {
+  it('Navigate to home', () => {
+    cy.visit('/login');
+    cy.get('footer a').contains('Home').click();
+    cy.url().should('include', '/').should('not.contain', '/login');
+  });
+
+  it('Navigate to login', () => {
+    cy.visit('/');
+    cy.get('footer a').contains('Login').click();
+    cy.url().should('include', '/login');
+  });
+  
+  it('Navigate to products', () => {
+    cy.visit('/');
+    cy.get('footer a').contains('Products').click();
+    cy.url().should('include', '/products');
   });
 });
