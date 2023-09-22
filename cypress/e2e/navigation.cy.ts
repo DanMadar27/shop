@@ -41,9 +41,15 @@ describe('Pages', () => {
 });
 
 describe('Home', () => {
-  it('Navigate to home', () => {
+  it('Navigate to home with navbar', () => {
     cy.visit('/login');
     cy.get('nav a').contains('Home').click();
+    cy.url().should('include', '/').should('not.contain', '/login');
+  });
+
+  it('Navigate to home with logo', () => {
+    cy.visit('/login');
+    cy.get('nav img').click();
     cy.url().should('include', '/').should('not.contain', '/login');
   });
 });
