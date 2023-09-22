@@ -134,4 +134,18 @@ describe('Footer', () => {
     cy.get('footer a').contains('Products').click();
     cy.url().should('include', '/products');
   });
+
+  it('Navigate to cart', () => {
+    login();
+    cy.visit('/');
+    cy.get('footer a').contains('Cart').click();
+    cy.url().should('include', '/cart');
+  });
+
+  it('Navigate to orders', () => {
+    login();
+    cy.visit('/');
+    cy.get('footer a').contains('Orders').click();
+    cy.url().should('include', '/orders');
+  });
 });
