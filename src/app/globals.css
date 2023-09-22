@@ -41,6 +41,13 @@ body {
   gap: 1rem;
 }
 
+.flex-row-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
 .flex-column-center {
   display: flex;
   flex-direction: column;
