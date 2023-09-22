@@ -86,6 +86,13 @@ describe('Products', () => {
     cy.get('a').contains('SHOP NOW').click();
     cy.url().should('include', '/products/1');
   });
+
+  it('Back link to products', () => {
+    cy.visit('/products/1');
+    cy.get('a').contains('arrow_back').click();
+    cy.url().should('include', '/products').should('not.contain', '/products/');
+  });
+
 });
 
 describe('Orders', () => {
@@ -113,6 +120,12 @@ describe('Orders', () => {
     cy.visit('/orders');
     cy.get('a').contains('Order 1').click();
     cy.url().should('include', '/orders/1');
+  });
+
+  it('Back link to orders', () => {
+    cy.visit('/orders/1');
+    cy.get('a').contains('arrow_back').click();
+    cy.url().should('include', '/orders').should('not.contain', '/orders/')
   });
 });
 
