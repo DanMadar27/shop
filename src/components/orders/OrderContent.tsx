@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 import { OrderDetails } from '@/models/Order'
+import styles from './Order.module.css';
 
 interface Props {
   order: OrderDetails
@@ -8,7 +9,7 @@ interface Props {
 
 export default function OrderContent({ order }: Props) {
   return (
-    <div>
+    <div className={styles.order}>
       <h1>Order {order.index}</h1>
       <p><b>Total:</b> {order.total_amount}</p>
       <p><b>Status:</b> {order.status}</p>

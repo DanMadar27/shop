@@ -1,0 +1,11 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.order ul {
+  margin: 0;
+  padding: 0;
+}
