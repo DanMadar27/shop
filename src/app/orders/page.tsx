@@ -9,6 +9,8 @@ import Order from '../../models/Order';
 import { getOrders } from '@/utils/api';
 import OrderList from '@/components/orders/OrderList';
 
+import styles from './Orders.module.css';
+
 export default function Orders() {
   const { data: session } = useSession({
     required: true,
@@ -32,7 +34,7 @@ export default function Orders() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Orders</h1>
       <OrderList orders={orders} />
     </div>

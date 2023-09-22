@@ -312,6 +312,7 @@ li {
 /* Table Styles */
 table {
   width: 100%;
+  border: 2px solid rgb(var(--primary));
   border-collapse: collapse;
 }
 
@@ -323,7 +324,7 @@ th,
 td {
   padding: 0.5rem;
   text-align: center;
-  border-bottom: 1px solid rgb(var(--foreground-rgb));
+  border-bottom: 1px solid rgb(var(--secondary));
 }
 
 th {
