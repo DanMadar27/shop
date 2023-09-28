@@ -235,6 +235,9 @@ button > span {
 
 /* Icon Styles */
 .icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   color: rgb(var(--primary));
   cursor: pointer;
@@ -242,6 +245,9 @@ button > span {
 }
 
 .filled-icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.2rem;
 }
 

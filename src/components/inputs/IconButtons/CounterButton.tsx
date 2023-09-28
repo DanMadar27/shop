@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import IconButton from './IconButton';
+import styles from './CounterButton.module.css';
 
 interface Props {
   value?: number;
@@ -16,7 +17,7 @@ const CounterButton: React.FC<Props> = ({ value = 0, increase, decrease }) => {
         disabled={!value}
         transparent={true}
       />
-      <span>{value}</span>
+      <span className={styles['counter']}>{value}</span>
       <IconButton
         icon='add'
         onClick={increase}
