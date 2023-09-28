@@ -15,7 +15,7 @@ const CartHeader: React.FC<Props> = ({ backLink }) => {
   return (
     <div className={styles.container}>
       <BackLink link={backLink} />
-      <AddressButton />
+      {/* <AddressButton /> */}
     </div>
   );
 };
