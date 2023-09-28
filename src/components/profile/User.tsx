@@ -4,18 +4,23 @@ import React from 'react'
 import { useSession } from 'next-auth/react';
 import styles from './User.module.css';
 
+import { isEnglish } from '@/utils/languages';
+
 const User: React.FC = () => {
   const { data: session } = useSession();
 
-  if (!session?.user?.name) return null;
+  if (!session) return null;
 
-  const { name, email } = session.user;
+  const name = session?.user?.name || '';
+  const email = session?.user?.email || '';
 
   return (
     <div className={styles.container}>
-      <p>{ name }</p>
+      { name && isEnglish(name) && (
+        <p> { name }</p>
+      )}
       { email && (
-        <p> { session.user?.email }</p>
+        <p> { email.split('@')[0] }</p>
       )}
     </div>
   )
