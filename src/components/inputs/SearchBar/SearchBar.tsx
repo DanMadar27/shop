@@ -3,6 +3,11 @@ import SearchButton from '../IconButtons/SearchButton';
 
 import styles from './SearchBar.module.css';
 
+import {
+  language,
+  SEARCH,
+} from '@/config/texts';
+
 interface Props {
   onSearch: (query: string) => void;
 }
@@ -29,7 +34,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
     <div className={`${styles.container} col-9`}>
       <input
         type='text'
-        placeholder='Search...'
+        placeholder={SEARCH[language]}
         value={searchQuery}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}

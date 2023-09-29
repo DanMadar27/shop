@@ -13,6 +13,12 @@ import Product from '@/models/Product';
 
 import styles from './Wishlist.module.css';
 
+import {
+  language,
+  WISHLIST,
+  ADD_ALL_TO_CART,
+} from '@/config/texts';
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -36,7 +42,7 @@ const Wishlist = (props: Props) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h2>Wishlist</h2>
+      <h2>{WISHLIST[language]}</h2>
       <ul>
         {products.map((product) => (
           <li key={product.id}>
@@ -49,7 +55,7 @@ const Wishlist = (props: Props) => {
         ))}
       </ul>
       <button className={styles['add-all']} onClick={addAllToCart}>
-        Add all to cart
+        {ADD_ALL_TO_CART[language]}
       </button>
     </Modal>
   );

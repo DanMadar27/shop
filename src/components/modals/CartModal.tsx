@@ -8,6 +8,11 @@ import ChangeProductQuantity from '../inputs/Products/ChangeProductQuantity';
 
 import Product from '@/models/Product';
 
+import {
+  language,
+  CART,
+} from '@/config/texts';
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +26,7 @@ const CartModal = (props: Props) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h2>Cart</h2>
+      <h2>{CART[language]}</h2>
       <ul>
         {products.map((product) => (
           <li key={product.id}>

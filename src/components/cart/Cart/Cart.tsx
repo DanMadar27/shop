@@ -14,6 +14,14 @@ import styles from './cart.module.css';
 
 import { checkout } from '@/utils/api';
 
+import {
+  language,
+  DELIVERY,
+  TOTAL,
+  CHECKOUT,
+  FREE,
+} from '@/config/texts';
+
 const CartContent: React.FC = () => {
   const products = useSelector((state: RootState) => state.cart.value);
 
@@ -71,10 +79,10 @@ const CartContent: React.FC = () => {
     <div>
       <CartList products={products} />
       <div className={styles.checkout}>
-        <p>Total: <b>${totalPrice}</b></p>
-        <p>Delivery: <b>Free</b></p>
+        <p>{`${TOTAL[language]}: `}<b>${totalPrice}</b></p>
+        <p>{`${DELIVERY[language]}: `}<b>{FREE[language]}</b></p>
         <button disabled={loading || !products.length} onClick={handleCheckout}>
-          Checkout
+          {CHECKOUT[language]}
         </button>
       </div>
     </div>

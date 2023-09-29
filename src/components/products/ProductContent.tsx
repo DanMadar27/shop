@@ -1,6 +1,12 @@
 import Product from '@/models/Product';
 import styles from './ProductContent.module.css';
 
+import {
+  language,
+  PRICE,
+  QUANTITY,
+} from '@/config/texts';
+
 interface Props {
   product: Product
 }
@@ -17,8 +23,8 @@ const ProductContent = (props: Props) => {
     
       <h3>{product.name}</h3>
       <p className='ellipsis'>{product.description}</p>
-      <p><b>Price</b>: ${product.price}</p>
-      <p><b>Quantity</b>: {product.quantity}</p>
+      <p><b>{PRICE[language]}</b>: ${product.price}</p>
+      <p><b>{QUANTITY[language]}</b>: {product.quantity}</p>
     </div>
   );
 };

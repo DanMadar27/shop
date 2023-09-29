@@ -7,6 +7,18 @@ import { OrderDetails } from '@/models/Order'
 
 import styles from './Order.module.css';
 
+import {
+  language,
+  ORDER,
+  TOTAL,
+  STATUS,
+  DATE,
+  PRODUCTS,
+  PRICE,
+  QUANTITY,
+  SUBTOTAL,
+} from '@/config/texts';
+
 interface Props {
   order: OrderDetails
 }
@@ -16,13 +28,13 @@ export default function OrderContent({ order }: Props) {
     <div className={styles.order}>
       <div>
         <BackLink link={'/orders'} />
-        <h1>Order {order.index}</h1>
-        <p><b>Total:</b> {order.total_amount}</p>
-        <p><b>Status:</b> {order.status}</p>
-        <p><b>Created:</b> {new Date(order.created_at).toDateString()}</p>
+        <h1>{`${ORDER[language]} ${order.index}`}</h1>
+        <p><b>{`${TOTAL[language]}: `}</b> {order.total_amount}</p>
+        <p><b>{`${STATUS[language]}: `}</b> {order.status}</p>
+        <p><b>{`${DATE[language]}: `}</b> {new Date(order.created_at).toDateString()}</p>
       </div>
       <div>
-        <h2>Products</h2>
+        <h2>{PRODUCTS[language]}</h2>
         <ul>
           {order.order_products.map((order_product) => (
             <li key={order_product.id}>
@@ -37,9 +49,9 @@ export default function OrderContent({ order }: Props) {
               <Link href={`/products/${order_product.product.id}`}>
                 <p>{order_product.product.name}</p>
               </Link>
-              <p><b>Price:</b> {order_product.product.price}</p>
-              <p><b>Quantity:</b> {order_product.quantity}</p>
-              <p><b>Subtotal:</b> {order_product.subtotal}</p>
+              <p><b>{`${PRICE[language]}: `}</b> {order_product.product.price}</p>
+              <p><b>{`${QUANTITY[language]}: `}</b> {order_product.quantity}</p>
+              <p><b>{`${SUBTOTAL[language]}: `}</b> {order_product.subtotal}</p>
             </li>
           ))}
         </ul>

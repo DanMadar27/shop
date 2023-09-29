@@ -10,6 +10,16 @@ import User from '../profile/User';
 import styles from './navbar.module.css';
 import 'material-icons/iconfont/filled.css';
 
+import {
+  language,
+  HOME,
+  PRODUCTS,
+  CART,
+  ORDERS,
+  LOGIN,
+  LOGOUT,
+} from '@/config/texts';
+
 const Navbar: React.FC = () => {
   const { data: session } = useSession();
 
@@ -32,12 +42,12 @@ const Navbar: React.FC = () => {
     return session ? (
       <button onClick={() => signOut()}>
         <span className='material-icons'>logout</span>
-        Logout
+        {LOGOUT[language]}
       </button>
     ): (
       <button onClick={() => signIn()} className={pathname === '/login' ? styles.active : ''}>
         <span className='material-icons'>login</span>
-        Login
+        {LOGIN[language]}
       </button>
     );
   }
@@ -72,19 +82,19 @@ const Navbar: React.FC = () => {
       <div className={`${styles.links} ${showLinks ? styles['show-links'] : ''}`}>
         <Link href='/' className={pathname === '/' ? styles.active : ''}>
           <span className='material-icons'>home</span>
-          Home
+          {HOME[language]}
         </Link>
         <Link href='/products' className={pathname.startsWith('/products') ? styles.active : ''}>
           <span className='material-icons'>inventory_2</span>
-          Products
+          {PRODUCTS[language]}
         </Link>
         <Link href='/cart' className={pathname === '/cart' ? styles.active : ''}>
           <span className='material-icons'>shopping_cart</span>
-          Cart
+          {CART[language]}
         </Link>
         <Link href='/orders' className={pathname === '/orders' ? styles.active : ''}>
           <span className='material-icons'>list_alt</span>
-          Orders
+          {ORDERS[language]}
         </Link>
         { loginButton() }
       </div>

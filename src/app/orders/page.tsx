@@ -10,6 +10,11 @@ import { getOrders } from '@/utils/api';
 import OrderList from '@/components/orders/OrderList';
 import Loading from '@/components/loading/Loading';
 
+import {
+  language,
+  ORDERS,
+} from '@/config/texts';
+
 export default function Orders() {
   const { data: session } = useSession({
     required: true,
@@ -34,7 +39,7 @@ export default function Orders() {
 
   return (
     <div className='container'>
-      <h1>Orders</h1>
+      <h1>{ORDERS[language]}</h1>
       <OrderList orders={orders} />
     </div>
   );

@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from 'react';
 
 import styles from './modal.module.css';
 
+import {
+  language,
+  CLOSE,
+} from '@/config/texts';
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -44,7 +49,7 @@ const Modal = (props: Props) => {
       <div className={styles.content} ref={modalContentRef}>
         {children}
         <button onClick={onClose}>
-          Close
+          {CLOSE[language]}
         </button>
       </div>
     </div>

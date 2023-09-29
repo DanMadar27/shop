@@ -7,6 +7,11 @@ import 'material-icons/iconfont/filled.css';
 import { useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react';
 
+import {
+  language,
+  GOOGLE_LOGIN,
+} from '@/config/texts';
+
 const GoogleLogin: React.FC = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
@@ -15,7 +20,7 @@ const GoogleLogin: React.FC = () => {
     <button 
       className={styles.button}
       onClick={() => signIn('google', { callbackUrl: callbackUrl || '/' } )}>
-      Login with Google
+      {GOOGLE_LOGIN[language]}
       <img
         src='/icons/google.svg'
         alt='Google Logo'

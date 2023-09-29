@@ -19,6 +19,11 @@ import 'material-icons/iconfont/filled.css';
 
 import { getProduct } from '@/utils/api';
 
+import {
+  language,
+  BUY_NOW,
+} from '@/config/texts';
+
 export default function ProductDetails({ params }: { params: { productId: string } }) {
   const { productId } = params;
   const [product, setProduct] = useState<Product>();
@@ -52,7 +57,7 @@ export default function ProductDetails({ params }: { params: { productId: string
       </div>
       <div className='flex-column-between'>
         <button onClick={buyNow}>
-          Buy Now
+          {BUY_NOW[language]}
         </button>
         <AddProductButton product={product} />
       </div>

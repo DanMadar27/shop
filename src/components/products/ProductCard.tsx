@@ -8,6 +8,11 @@ import LikeButton from '../inputs/IconButtons/LikeButton';
 
 import 'material-icons/iconfont/filled.css';
 
+import {
+  language,
+  BUY_NOW,
+} from '@/config/texts';
+
 interface Props {
   product: ProductModel;
 }
@@ -20,7 +25,7 @@ const ProductCard: NextPage<Props> = (props) => {
       <ProductContent product={product} />
       <div className='buttons'>
         <Link href={`/products/${product.id}`}>
-          SHOP NOW
+          {BUY_NOW[language]}
         </Link>
         <LikeButton product={product} />
       </div>

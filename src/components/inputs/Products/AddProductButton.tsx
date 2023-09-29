@@ -5,6 +5,11 @@ import { addProduct } from '@/app/GlobalRedux/features/cart/cartSlice';
 
 import Product from '@/models/Product';
 
+import {
+  language,
+  ADD_TO_CART,
+} from '@/config/texts';
+
 interface Props {
   product: Product;
 }
@@ -22,7 +27,7 @@ const AddProductButton: React.FC<Props> = ({ product }) => {
   
   return (
     <button onClick={addToCart}>
-      Add to cart
+      {ADD_TO_CART[language]}
     </button>
   );
 };

@@ -18,7 +18,12 @@ import styles from './products.module.css';
 import CartModal from '@/components/modals/CartModal';
 
 import { getProducts } from '@/utils/api';
-import { validateSearch } from '@/utils/validation';
+
+import {
+  language,
+  OPEN_WISHLIST,
+  OPEN_CART,
+} from '@/config/texts';
 
 const catalogImages = [
   '/next.svg',
@@ -72,8 +77,8 @@ export default function Home() {
         <ImageSlider images={catalogImages}/>
       </div>
       <div className={styles['modal-buttons']}>
-        <button onClick={openWishlist}>Open Wishlist</button>
-        <button onClick={openCartModal}>Open Cart</button>
+        <button onClick={openWishlist}>{OPEN_WISHLIST[language]}</button>
+        <button onClick={openCartModal}>{OPEN_CART[language]}</button>
       </div>
       <Wishlist
         isOpen={isWishlistOpen} 
