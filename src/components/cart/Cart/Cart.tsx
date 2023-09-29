@@ -8,6 +8,7 @@ import { RootState } from '@/app/GlobalRedux/store';
 import { emptyCart} from '@/app/GlobalRedux/features/cart/cartSlice';
 
 import CartList from '../CartList';
+import Loading from '@/components/loading/Loading';
 
 import styles from './cart.module.css';
 
@@ -53,7 +54,6 @@ const CartContent: React.FC = () => {
       alert('Checkout completed successfully');
 
       dispatch(emptyCart());
-      setLoading(false);
       router.push('/orders');      
     }
     catch (error) {
@@ -62,6 +62,10 @@ const CartContent: React.FC = () => {
       alert('Something went wrong');
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
