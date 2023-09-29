@@ -37,6 +37,14 @@ export const authOptions = {
           console.log(`Created user ${email}`);
         }
         else {
+          // Update name of the user if it has changed
+          if (user.name && userExists.name !== user.name) {
+            await prisma.user.update({
+              where: { email },
+              data: { name: user.name }
+            });
+          }
+
           console.log(`User ${email} logged in`);
         }
 
