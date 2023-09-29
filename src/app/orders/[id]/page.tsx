@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import { OrderDetails } from '@/models/Order';
 import { getOrder } from '@/utils/api';
 import OrderContent from '@/components/orders/OrderContent';
+import Loading from '@/components/loading/Loading';
 
 export default function OrderDetails({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -26,7 +27,9 @@ export default function OrderDetails({ params }: { params: { id: string } }) {
       .catch((error) => console.error(error));
   }, [id]);
 
-  if (!order) return (<div>Loading...</div>);
+  if (!order) {
+    return <Loading />;
+  }
 
   return (
     <OrderContent order={order} />

@@ -8,6 +8,7 @@ import useLoadOnScroll from '@/hooks/loadOnScroll';
 import Order from '../../models/Order';
 import { getOrders } from '@/utils/api';
 import OrderList from '@/components/orders/OrderList';
+import Loading from '@/components/loading/Loading';
 
 export default function Orders() {
   const { data: session } = useSession({
@@ -28,7 +29,7 @@ export default function Orders() {
   });
 
   if (loading && !orders.length) {
-    return <div>Loading...</div>
+    return <Loading />;
   }
 
   return (
