@@ -38,6 +38,14 @@ function useLoadOnScroll<T>(props : LoadOnScrollHookProps<T>) {
     }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [skip, loading, eod]);
+
   const handleScroll = () => {
     let debounceTimer;
 
@@ -75,15 +83,7 @@ function useLoadOnScroll<T>(props : LoadOnScrollHookProps<T>) {
         });
       }, 500);
     }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, [skip, loading, eod, handleScroll]);
+  }
 
   const handleSearch = (query: string) => {
     if (!searchEnabled) return;
