@@ -6,7 +6,7 @@ type Limit = {
   lastRequestTime: number;
 };
 
-export const requestLimit = 500;
+export const requestLimit = 100;
 
 class RateLimiter {
   private limits: Limit[];
@@ -29,6 +29,13 @@ class RateLimiter {
     const ipAddress = this.getIp(request);
     const now = Date.now();
     const limitInfo = this.limits.find(limit => limit.ipAddress === ipAddress);
+
+    if (!request.nextUrl.pathname.startsWith('/api/')) {
+      // Don't rate limit non-API requests
+      return limitInfo ?
+        this.requestsPerMinute - limitInfo.requests :
+        this.requestsPerMinute - 1;
+    }
 
     if (!limitInfo) {
       // Add a new entry for this IP address if it doesn't exist
