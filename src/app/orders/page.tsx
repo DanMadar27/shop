@@ -32,7 +32,7 @@ export default function Orders() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h1>Orders</h1>
       <OrderList orders={orders} />
     </div>

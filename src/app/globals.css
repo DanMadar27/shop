@@ -25,8 +25,8 @@ body {
 .container {
   min-width: 200px;
   max-width: 1200px;
-  margin: auto;
-  padding: 1rem;
+  margin: 2rem auto;
+  padding: 1rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,6 +37,13 @@ body {
 .flex-row-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flex-row-start {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
@@ -157,6 +164,12 @@ p {
   margin-top: 0.5rem;
 }
 
+h1, h2, h3, p, a, button, input, label {
+  font: Arial;
+  line-height: 170%;
+  letter-spacing: 1px;
+}
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -222,6 +235,9 @@ button > span {
 
 /* Icon Styles */
 .icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   color: rgb(var(--primary));
   cursor: pointer;
@@ -229,6 +245,9 @@ button > span {
 }
 
 .filled-icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.2rem;
 }
 
@@ -306,6 +325,7 @@ li {
 /* Table Styles */
 table {
   width: 100%;
+  border: 2px solid rgb(var(--primary));
   border-collapse: collapse;
 }
 
@@ -317,7 +337,7 @@ th,
 td {
   padding: 0.5rem;
   text-align: center;
-  border-bottom: 1px solid rgb(var(--foreground-rgb));
+  border-bottom: 1px solid rgb(var(--secondary));
 }
 
 th {

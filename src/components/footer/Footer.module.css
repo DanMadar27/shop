@@ -1,0 +1,29 @@
+.footer {
+  margin-top: auto;
+  padding: 50px 15px;
+  border-top: solid 2px rgb(var(--primary));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.links > p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  font-weight: 500;
+}

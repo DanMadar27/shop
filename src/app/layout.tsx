@@ -2,6 +2,7 @@ import { GlobalContextProvider } from './Context/store';
 import { GlobalProvider } from './GlobalRedux/provider';
 
 import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/footer/Footer';
 import './globals.css'
 
 import type { Metadata } from 'next'
@@ -26,6 +27,7 @@ export default function RootLayout({
           <GlobalProvider>
           <Navbar />
             {children}
+          <Footer />
           </GlobalProvider>
         </GlobalContextProvider>
       </body>

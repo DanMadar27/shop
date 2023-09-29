@@ -1,4 +1,5 @@
 import Product from '@/models/Product';
+import styles from './ProductContent.module.css';
 
 interface Props {
   product: Product
@@ -8,7 +9,7 @@ const ProductContent = (props: Props) => {
   const { product } = props;
 
   return (
-    <div>
+    <div className={styles.container}>
       <img
         src={product.image}
         alt={product.name}

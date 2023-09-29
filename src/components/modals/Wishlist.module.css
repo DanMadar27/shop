@@ -1,6 +1,10 @@
-.button {
+.buttons {
+  width: 180px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
+}
+
+.add-all {
+  margin-bottom: 15px;
 }

@@ -34,7 +34,7 @@ export default function Home() {
       dispatch(setProducts(products));
     },
     apiFunction: getProducts,
-    take: 10,
+    take: 12,
     searchEnabled: true,
   });
 

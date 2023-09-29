@@ -16,7 +16,12 @@ const GoogleLogin: React.FC = () => {
       className={styles.button}
       onClick={() => signIn('google', { callbackUrl: callbackUrl || '/' } )}>
       Login with Google
-      <span className='material-icons'> login </span>
+      <img
+        src='/icons/google.svg'
+        alt='Google Logo'
+        width={30}
+        height={30}
+      />
     </button>
   );
 };
