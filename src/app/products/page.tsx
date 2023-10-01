@@ -29,6 +29,8 @@ const catalogImages = [
   '/products/tech.jpg',
   '/products/smart-watch.jpg',
   '/products/camera.jpg',
+  '/products/charger.jpg',
+  '/products/clothes.jpg',
 ]
 
 export default function Home() {

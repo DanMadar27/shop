@@ -1,29 +1,68 @@
+/* Took from https://codepen.io/tianyili/pen/qBEdeoy */
+
 .container {
   width: 70%;
   height: 300px; /* Adjust the height as per your requirement */
-  margin: auto;
-  overflow: hidden;
+  margin: auto;  
+}
+
+@keyframes display {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
 }
 
 .slider {
-  display: flex;
-  height: 100%;
-  /* animation: slide 10s infinite; *//* Adjust the duration and timing function as needed */
-}
-
-.slider img {
   width: 100%;
-  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-@keyframes slide {
-  0%, 100% {
-    transform: translateX(0);
+.slider > img {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  animation: display 40s infinite;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    height: 400px;
   }
-  33.33% {
-    transform: translateX(-100%);
+
+  .slider > img {
+    max-width: 650px;
   }
-  66.67% {
-    transform: translateX(-200%);
-  }
+}
+
+.slider > img:nth-child(2) {
+  animation-delay: 8s;
+}
+.slider > img:nth-child(3) {
+  animation-delay: 16s;
+}
+.slider > img:nth-child(4) {
+  animation-delay: 24s;
+}
+.slider > img:nth-child(5) {
+  animation-delay: 32s;
 }
