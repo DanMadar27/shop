@@ -56,8 +56,11 @@ const descriptions = [
 ];
 
 const images = [
-  '/next.svg',
-  '/vercel.svg',
+  '/products/tech.jpg',
+  '/products/smart-watch.jpg',
+  '/products/camera.jpg',
+  '/products/charger.jpg',
+  '/products/clothes.jpg',
 ];
 
 const mockProducts: { name: string, description: string; price: number, image: string }[] = [];
