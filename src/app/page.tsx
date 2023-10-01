@@ -27,7 +27,7 @@ export default function Hero() {
       </div>
       <div className='image-container'>
         <img
-          src='/next.svg'
+          src='/logos/tech.jpg'
           alt='NextJS Logo'
         />
       </div>
