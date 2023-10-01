@@ -10,7 +10,7 @@ import {
   LOGIN,
 } from '../config/texts';
 
-export default function Hero() {
+export default function Home() {
   const router = useRouter();
 
   return (
