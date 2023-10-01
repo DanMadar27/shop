@@ -21,6 +21,10 @@
     width: 50%;
     height: 100%;
   }
+ 
+  .container img {
+    max-width: 700px;
+  }
 }
   
 @media screen and (max-width: 768px) {

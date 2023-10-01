@@ -42,8 +42,6 @@ export default function OrderContent({ order }: Props) {
                 <img
                   src={order_product.product.image}
                   alt={order_product.product.name}
-                  width={200}
-                  height={200}
                 />
               </Link>
               <Link href={`/products/${order_product.product.id}`}>
