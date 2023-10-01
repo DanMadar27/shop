@@ -1,3 +1,9 @@
+.container h3 {
+  overflow: unset;
+  text-overflow: unset;
+  white-space: unset;
+}
+
 .container p {
   overflow: unset;
   text-overflow: unset;
