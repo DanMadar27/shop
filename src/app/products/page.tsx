@@ -67,10 +67,6 @@ export default function Home() {
     setIsCartModalOpen(false);
   }
   // End Modals //
-
-  if (loading && !products.length) {
-    return <Loading />;
-  }
   
   return (
     <div className={styles.container}>
@@ -91,7 +87,9 @@ export default function Home() {
         onClose={closeCartModal} 
       />
       <SearchBar onSearch={handleSearch} />
-      <Products products={products} />
+      {(loading && !products.length) ?
+        <Loading /> :
+        <Products products={products} />}
     </div>
   );
 }
