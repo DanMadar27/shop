@@ -9,7 +9,14 @@ async function getParams(request: NextRequest) {
     case 'POST':
     case 'PUT':
     case 'PATCH':
-      return await request.json();
+      try {
+        return await request.text() ? await request.json() : '';
+      }
+      catch (error) {
+        console.error('Error parsing request body : ', error);
+        return null;
+      }
+      
     default:
       return null;
   }
@@ -20,10 +27,15 @@ async function isMaliciousRequest(request: NextRequest) {
     return false;
   }
 
-  const params = JSON.stringify(await getParams(request));
+  const params = await getParams(request);
+
+  if (params === null) {
+    return true;
+  }
+
   const sqlInjectionPattern = /SELECT|INSERT|UPDATE|DELETE|DROP|UNION|OR\s+1\s*=\s*1/i;
 
-  return sqlInjectionPattern.test(params);
+  return sqlInjectionPattern.test(JSON.stringify(params));
 }
 
 export async function validateRequest(request: NextRequest) {
