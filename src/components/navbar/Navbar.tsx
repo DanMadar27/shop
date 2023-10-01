@@ -70,10 +70,11 @@ const Navbar: React.FC = () => {
         <div className={styles.logo}>
           <Link href='/'>
             <img
-              src='/next.svg'
+              
+              src='/logos/tech.jpg'
               alt='Shop Logo'
               width={150}
-              height={50}
+              height={100}
             />
           </Link>
         </div>

@@ -26,8 +26,9 @@ import {
 } from '@/config/texts';
 
 const catalogImages = [
-  '/next.svg',
-  '/vercel.svg',
+  '/products/tech.jpg',
+  '/products/smart-watch.jpg',
+  '/products/camera.jpg',
 ]
 
 export default function Home() {
