@@ -170,12 +170,6 @@ h1, h2, h3, p, a, button, input, label {
   letter-spacing: 1px;
 }
 
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .filled {
   min-width: 200px;
   padding: 1rem;
@@ -358,4 +352,15 @@ th {
 
 .card a {
   font-weight: 700;
+}
+
+.card h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -21,8 +21,8 @@ const ProductContent = (props: Props) => {
         alt={product.name}
       />
     
-      <h3 className='ellipsis'>{product.name}</h3>
-      <p className='ellipsis'>{product.description}</p>
+      <h3>{product.name}</h3>
+      <p>{product.description}</p>
       <p><b>{PRICE[language]}</b>: ${product.price}</p>
       <p><b>{QUANTITY[language]}</b>: {product.quantity}</p>
     </div>
