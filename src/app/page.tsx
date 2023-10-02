@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react';
 import styles from './home.module.css';
+
 import {
   language,
   APP_TITLE_INTRODUCTION,
@@ -11,6 +13,7 @@ import {
 } from '../config/texts';
 
 export default function Home() {
+  const { data: session } = useSession();
   const router = useRouter();
 
   return (
@@ -18,9 +21,11 @@ export default function Home() {
       <div>
         <h1>{APP_TITLE_INTRODUCTION[language]}</h1>
         <p>{APP_SUBTITLE_INTRODUCTION[language]}</p>
-        <button id='home-login-button' onClick={() => router.push('/login')}>
-          {LOGIN[language]}
-        </button>
+        {!session && (
+          <button id='home-login-button' onClick={() => router.push('/login')}>
+            {LOGIN[language]}
+          </button>
+        )}
         <button onClick={() => router.push('/products')}>
           {EXPLORE[language]}
         </button>
