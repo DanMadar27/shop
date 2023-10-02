@@ -30,13 +30,6 @@ class RateLimiter {
     const now = Date.now();
     const limitInfo = this.limits.find(limit => limit.ipAddress === ipAddress);
 
-    if (!request.nextUrl.pathname.startsWith('/api/')) {
-      // Don't rate limit non-API requests
-      return limitInfo ?
-        this.requestsPerMinute - limitInfo.requests :
-        this.requestsPerMinute - 1;
-    }
-
     if (!limitInfo) {
       // Add a new entry for this IP address if it doesn't exist
       this.limits.push({
