@@ -52,7 +52,7 @@ export default function ProductDetails({ params }: { params: { productId: string
     <div className={styles.container}>
       <div>
         <BackLink link={'/products'} />
-        <ProductContent product={product} />
+        <ProductContent product={product} showQuantity={false} />
         {/* <LikeButton product={product} /> */}
       </div>
       <div className='flex-column-between'>

@@ -8,11 +8,12 @@ import {
 } from '@/config/texts';
 
 interface Props {
-  product: Product
+  product: Product,
+  showQuantity?: boolean,
 }
 
 const ProductContent = (props: Props) => {
-  const { product } = props;
+  const { product, showQuantity = true } = props;
 
   return (
     <div className={styles.container}>
@@ -24,7 +25,9 @@ const ProductContent = (props: Props) => {
       <h3>{product.name}</h3>
       <p>{product.description}</p>
       <p><b>{PRICE[language]}</b>: ${product.price}</p>
-      <p><b>{QUANTITY[language]}</b>: {product.quantity}</p>
+      {showQuantity && (
+        <p><b>{QUANTITY[language]}</b>: {product.quantity}</p>
+      )}
     </div>
   );
 };
