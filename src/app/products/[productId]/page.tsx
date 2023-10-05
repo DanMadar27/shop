@@ -53,13 +53,13 @@ export default function ProductDetails({ params }: { params: { productId: string
       <div>
         <BackLink link={'/products'} />
         <ProductContent product={product} />
-        <LikeButton product={product} />
+        {/* <LikeButton product={product} /> */}
       </div>
       <div className='flex-column-between'>
         <button onClick={buyNow}>
           {BUY_NOW[language]}
         </button>
-        <AddProductButton product={product} />
+        {/* <AddProductButton product={product} /> */}
       </div>
     </div>
   )
