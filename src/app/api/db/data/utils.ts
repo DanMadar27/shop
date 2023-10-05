@@ -2,8 +2,12 @@ import { PrismaClient } from '@prisma/client';
 import initProducts from './products';
 
 export async function initData(prisma: PrismaClient) {
-  if (!await isInitData(prisma)) {
-    await createInitData(prisma);
+  try {
+    if (!await isInitData(prisma)) {
+      await createInitData(prisma);
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 
