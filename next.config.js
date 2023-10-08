@@ -4,6 +4,14 @@ const headers = require('./src/utils/headers');
 const nextConfig = {
   poweredByHeader: false,
   headers,
+  async rewrites() {
+    return [
+      {
+        source: '/privacy',
+        destination: '/html/privacy.html',
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

@@ -133,3 +133,7 @@ export const QUICK_LINKS = {
 export const COPYRIGHT = {
   en: 'Copyright © 2023 website owner',
 };
+
+export const PRIVACY_POLICY = {
+  en: 'Privacy Policy',
+};

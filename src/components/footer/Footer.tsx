@@ -15,6 +15,7 @@ import {
   ORDERS,
   COPYRIGHT,
   QUICK_LINKS,
+  PRIVACY_POLICY,
 } from '@/config/texts';
 
 const Footer: React.FC = async () => {
@@ -29,6 +30,7 @@ const Footer: React.FC = async () => {
         { !session && <Link href='/login'>{LOGIN[language]}</Link> }
         { session && <Link href='/cart'>{CART[language]}</Link> }
         { session && <Link href='/orders'>{ORDERS[language]}</Link> }
+        <Link href='/privacy'>{PRIVACY_POLICY[language]}</Link>
       </div>
       <p className={styles.copyright}>{COPYRIGHT[language]}</p>
     </footer>
