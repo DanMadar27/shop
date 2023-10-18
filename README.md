@@ -2,7 +2,7 @@
 This project is an e-commerce shop built using Next.js and Prisma. It allows users to browse and purchase various products online.
 
 ## Getting Started
-These instructions will help you set up the project on your local machine for development and testing purposes. See deployment for information on how to deploy the project to a live system.
+These instructions will help you set up the project on your local machine for development and testing purposes.
 
 ### Prerequisites
 Before you begin, ensure you have the following installed:
