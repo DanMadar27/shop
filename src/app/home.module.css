@@ -7,6 +7,10 @@
   align-items: center;
   justify-content: flex-start;
   text-align: center;
+
+  animation: fadeInAnimation ease-out 1s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
 }
 
 .container > div {
@@ -17,4 +21,13 @@
 
 .container button {
   margin: 0 0.5rem;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
