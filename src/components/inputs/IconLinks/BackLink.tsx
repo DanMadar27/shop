@@ -10,7 +10,7 @@ interface Props {
 const BackLink: React.FC<Props> = ({ link }) => {
   return (
     <Link href={link}>
-      <span className='material-icons'>
+      <span className='material-icons icon-large'>
         arrow_back
       </span>
     </Link>
