@@ -10,6 +10,10 @@
   color: rgb(var(--text));
 }
 
+.navbar a {
+  text-decoration: none;
+}
+
 .logo {
   padding: 0.5rem;
 }
